@@ -157,13 +157,13 @@ export default function NotFound() {
         transition={{ duration: 0.6, ease: EASE }}
       >
         {/* Logo */}
-        <Link href="/" aria-label="Cybersage">
+        <Link href="/" aria-label="Zakaria Dabella">
           <Image
-            src="/logo/logo_white.png"
-            alt="Cybersage"
+            src="/zakaria-logo.png"
+            alt="Zakaria Dabella logo"
             width={110}
             height={28}
-            style={{ filter: 'invert(1)', opacity: 0.4 }}
+            style={{ opacity: 0.75, width: 44, height: 44, objectFit: 'contain' }}
             className="hover:opacity-70 transition-opacity duration-300"
           />
         </Link>
@@ -308,13 +308,13 @@ export default function NotFound() {
           className="text-[0.5rem] tracking-[0.2em] uppercase text-black/15 font-medium pt-6"
           style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
         >
-          © 2026 Abakwe Carrington · Cybersage
+          © 2026 Zakaria Dabella
         </span>
         <span
           className="text-[0.5rem] tracking-[0.18em] uppercase text-black/12 font-medium pt-6"
           style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
         >
-          Infrastructure &amp; Systems Architect
+          Full-Stack Developer · IT Support · UI/UX Designer
         </span>
       </motion.div>
 
@@ -353,7 +353,7 @@ export default function NotFound() {
             letterSpacing: '0.22em',
           }}
         >
-          Cybersage · 2026
+          Zakaria Dabella · 2026
         </span>
         <div className="w-px h-12 bg-black/8" />
       </motion.div>

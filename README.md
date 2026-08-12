@@ -1,33 +1,24 @@
-# Cybersage — Personal Portfolio
+# Zakaria Dabella Portfolio
 
-> **Live site:** [cybersage.dev](https://cybersage.dev)
+Personal portfolio for Zakaria Dabella, a Casablanca-based Full-Stack Developer, IT Support Technician, and Graphic/UI-UX Designer.
 
-A bespoke, custom-built portfolio for **Donrington** — designed and engineered from the ground up. Not a template. Not a theme.
-
----
-
-## Tech Stack
+## Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js (App Router) |
+| Framework | Next.js App Router |
 | Styling | Tailwind CSS |
-| Animations | Framer Motion |
+| Animations | Framer Motion, GSAP |
 | Language | TypeScript |
 | Deployment | Vercel |
-| Images | Next.js Image + Sharp |
-| OG Images | Dynamic via `opengraph-image.tsx` |
+| OG Images | Dynamic `opengraph-image.tsx` |
 
----
+## Content
 
-## Architecture Highlights
-
-- **Custom cursor system** — hardware-accelerated, zero React re-renders on pointer move
-- **Dynamic OG image generation** — server-side rendered per-route with base64 logo embedding
-- **App Router** — full Next.js App Router with layout-level metadata and streaming
-- **SEO-first** — structured metadata, canonical URLs, sitemap, robots.txt
-
----
+- Hero and loader use Zakaria's logo.
+- About section uses Zakaria's original portrait colors.
+- Work section presents Zakaria's own project interfaces without old placeholder screenshots.
+- Resume, metadata, sitemap, robots, and AI index files are scoped to Zakaria.
 
 ## Running Locally
 
@@ -36,34 +27,12 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open `http://localhost:3000`.
 
----
+## Contact
 
-## Intellectual Property Notice
+Email: `zakariaadabella@gmail.com`
 
-This repository is **public for learning purposes only.**
+GitHub: `github.com/zakaria10-dabella`
 
-### What you CAN do
-- Study the architecture, patterns, and implementation techniques
-- Reference specific solutions (cursor system, OG image setup, etc.) in your own **original** work
-- Fork to experiment privately
-
-### What you CANNOT do
-- Copy or reproduce the visual design, layout, or aesthetic as your own portfolio or commercial product
-- Use the **Cybersage** name, logo, wordmark, or any brand asset
-- Deploy a copy of this site and represent it as your own original work
-
-The source code is licensed under **MIT** (see [LICENSE](./LICENSE)) — which governs the code logic. The design, brand assets, and overall visual identity are **all rights reserved** and are explicitly excluded from that license.
-
-If you're unsure whether a specific use is acceptable, open an issue and ask.
-
----
-
-## Acknowledgements
-
-Built with [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com), and [Framer Motion](https://www.framer.com/motion/).
-
----
-
-© 2026 Donrington · [cybersage.dev](https://cybersage.dev)
+LinkedIn: `linkedin.com/in/zakaria-dabella`

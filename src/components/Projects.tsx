@@ -10,196 +10,55 @@ import { ArrowUpRight } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const PROJECTS = [
-  {
-    id: 'autoboy',
-    name: 'Autoboy Express',
-    category: 'B2B / B2C Marketplace',
-    tagline: 'Dual-sided automotive marketplace on Go microservices. Real-time inventory, Redis-cached feeds, React seller dashboard. 30% DB latency reduction.',
-    stack: ['React', 'Go', 'PostgreSQL', 'Redis'],
-    image: '/projects/autoboy.png',
-    year: '2025',
-    link: 'https://autoboyexpress.com',
-  },
-  {
-    id: 'recoverderm',
-    name: 'RecoverDerm',
-    category: 'Paramedical Platform',
-    tagline: 'Full stack for a paramedical clinic. Secure patient portals, treatment tracking, headless CMS. JWT + refresh token rotation, HIPAA-compliant.',
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-    image: '/projects/recoverderm.png',
-    year: '2026',
-    link: 'https://recoverderm.ca',
-  },
-  {
-    id: 'anoc',
-    name: 'Anoc.ng',
-    category: 'Audit / Finance',
-    tagline: 'Platform for Chartered Accountants to handle compliance, manage documents, and keep audit records clean. Encrypted pipelines, zero breaches.',
-    stack: ['Next.js', 'Node.js', 'PostgreSQL'],
-    image: '/projects/anoc.png',
-    year: '2025',
-    link: 'https://anoc.ng',
-  },
-  {
-    id: 'wytnest',
-    name: 'Wytnest',
-    category: 'Testimonial SaaS',
-    tagline: 'Multi-tenant testimonial platform — campaigns, video via Cloudflare Stream, shadow DOM widget embeds, and idempotent dual-rail payments: Paystack NGN + Stripe USD.',
-    stack: ['Next.js', 'Supabase', 'Cloudflare', 'Paystack', 'Stripe'],
-    image: '/projects/wytnest_hero.png',
-    year: '2026',
-    link: 'https://wytnest.vercel.app',
-  },
-  {
-    id: 'nextgen',
-    name: 'NextGen Robotics',
-    category: 'Automation Hub',
-    tagline: 'Web platform and cloud deployment for a robotics company. CI/CD automation, Go backend, AWS. 25% user engagement lift post-launch.',
-    stack: ['Next.js', 'Go', 'AWS', 'Docker'],
-    image: '/projects/nextgen.png',
-    year: '2025',
-    link: 'https://nextgenerationrobotics.org',
-  },
-  {
-    id: 'axflo',
-    name: 'Axflo Oil & Gas',
-    category: 'Enterprise CMS',
-    tagline: 'Headless CMS for an oil & gas company with workflow automation, document generation, and role-based access. Cut manual ops by 60%.',
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-    image: '/projects/axflo.png',
-    year: '2025',
-    link: 'https://axfloo.com',
-  },
-  {
-    id: 'samdus',
-    name: 'Samdus Oil & Gas',
-    category: 'Corp Portfolio',
-    tagline: 'Corporate site for an oil & gas company. Custom GSAP animations, SEO-first build, 98/100 on Lighthouse. Sub-1s LCP.',
-    stack: ['Next.js', 'Django'],
-    image: '/projects/samdus1_1.jpg',
-    year: '2024',
-    link: 'https://samdus.com',
-  },
-  {
-    id: 'deets',
-    name: 'Deets',
-    category: 'Industrial System',
-    tagline: 'Manufacturing platform with real-time production tracking, compliance workflows, and WebSocket-powered reporting.',
-    stack: ['React', 'Node.js', 'PostgreSQL'],
-    image: '/projects/deets.png',
-    year: '2025',
-    link: 'https://deetsnigeria.org',
-  },
-  {
-    id: 'handyman',
-    name: 'All A Handyman',
-    category: 'Lead Generation',
-    tagline: 'Lead gen site for a home services company. Conversion-tuned landing pages, qualified inquiries tripled post-launch.',
-    stack: ['React', 'Node.js', 'Tailwind'],
-    image: '/projects/handyman3.jpg',
-    year: '2024',
-  },
-  {
-    id: 'twerk',
-    name: 'Twerk Queen Lagos',
-    category: 'Event Portfolio',
-    tagline: 'Event portfolio for a professional performer. GSAP showcase, booking engine, 60fps scroll animations, sub-800ms FCP.',
-    stack: ['Next.js', 'Tailwind', 'GSAP'],
-    image: '/projects/twerkqueenlagos.jpg',
-    year: '2024',
-  },
-  {
-    id: 'chrisconteras',
-    name: 'Chris Conteras',
-    category: 'Cleaning Agency',
-    tagline: 'Lead gen site for a Texas cleaning agency. SEO-first build, optimised inquiry funnels, qualified bookings up since launch.',
-    stack: ['Next.js', 'Tailwind', 'SEO'],
-    image: '/projects/chrisconteras.png',
-    year: '2025',
-    link: 'https://chriscleanstexas.com',
-  },
-  {
-    id: 'myrakeleher',
-    name: 'Myra Keleher',
-    category: 'Cleaning Agency',
-    tagline: 'Cleaning agency site for Florida. Service showcase, instant quote flow, form completion up 40%.',
-    stack: ['React', 'Node.js', 'Tailwind'],
-    image: '/projects/myrakeleher.png',
-    year: '2025',
-    link: 'https://myrakelehercleaning.com',
-  },
-  {
-    id: 'techhub',
-    name: 'TechHub',
-    category: 'Dev Community',
-    tagline: 'Open source dev community. Project showcases, resource sharing, real-time activity feeds.',
-    stack: ['React', 'Node.js', 'PostgreSQL'],
-    image: '/projects/techhub.png',
-    year: '2023',
-    link: 'https://github.com/Donrington/techhub',
-  },
-  {
-    id: 'amanigo',
-    name: 'Amanigo Travels',
-    category: 'Travel Mgmt App',
-    tagline: 'Travel management app with booking engine, itinerary builder, and integrations with global travel providers. Idempotent payments.',
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-    image: '/projects/amanigo.png',
-    year: '2024',
-  },
-  {
-    id: 'rokeyla',
-    name: 'Rokeyla Fashion',
-    category: 'Ecommerce',
-    tagline: 'E-commerce platform for a fashion brand. Stripe integration, live inventory sync via pg_notify, scales with traffic.',
-    stack: ['Next.js', 'Stripe', 'PostgreSQL'],
-    image: '/projects/rokeyla.jpg',
-    year: '2024',
-  },
-  {
-    id: 'krkmotors',
-    name: 'KRK Motors',
-    category: 'Brand Site',
-    tagline: 'Brand site for a premium auto dealership. GSAP animations, sub-1s load time, clean automotive aesthetic.',
-    stack: ['Next.js', 'GSAP', 'Tailwind'],
-    image: '/projects/krkmotors.png',
-    year: '2024',
-    link: 'https://krk-motors.vercel.app',
-  },
-  {
-    id: 'tuantling',
-    name: 'Tuan Tling Vinyl Flooring',
-    category: 'Home Services',
-    tagline: 'SEO-optimised service platform for a vinyl flooring specialist. Service showcase, quote request funnels, sub-1s LCP.',
-    stack: ['Next.js', 'Tailwind', 'SEO'],
-    image: '/projects/tuantling.png',
-    year: '2026',
-    link: 'https://tuantlingvinylflooring.com',
-  },
-  {
-    id: 'chronos',
-    name: 'Chronos',
-    category: 'Ambient AI Platform',
-    tagline: 'Adaptive ambient display system powered by Google Gemini. Auto-tags images with AI, scores content by time-of-day, mood, and context. Cloudinary-backed storage with user feedback loop.',
-    stack: ['Python', 'Streamlit', 'PostgreSQL', 'Gemini AI'],
-    image: '/projects/chronos.png',
-    year: '2026',
-    link: 'https://thechronosaura.com',
-  },
-  {
-    id: 'circlesoflife',
-    name: 'Circles of Life Healthcare',
-    category: 'Healthcare + AI Platform',
-    tagline: 'Marketing site, admin CMS, and a four-feature Claude-powered care-advisor suite for an Atlanta in-home care provider. Streaming AI chat, care assessment, applicant auto-scoring, Supabase RLS.',
-    stack: ['Next.js', 'Supabase', 'Claude AI', 'GSAP'],
-    image: '/logo/colhcs.png',
-    year: '2026',
-    link: 'https://circlesoflifehcs.com',
-  },
-] as const;
+interface Project {
+  id: string;
+  name: string;
+  category: string;
+  tagline: string;
+  stack: string[];
+  year: string;
+  image: string;
+  link?: string;
+}
 
-type Project = (typeof PROJECTS)[number];
+const PROJECTS: Project[] = [
+  {
+    id: 'na9l-pro',
+    name: 'Na9l Pro',
+    category: 'Logistics Platform',
+    tagline: 'Transport and delivery platform interface designed around shipment workflows, service booking, route management, and a clean operational dashboard.',
+    stack: ['Laravel', 'React.js', 'MySQL', 'REST APIs', 'UI Design'],
+    year: '2026',
+    image: '/projects/na9l%20pro%20interface.png',
+  },
+  {
+    id: 'weather-app',
+    name: 'Weather App',
+    category: 'Web Application',
+    tagline: 'Weather application interface with focused forecast cards, location search, responsive layout, and clear visual hierarchy for quick daily reading.',
+    stack: ['React.js', 'API Integration', 'CSS3', 'UI Design'],
+    year: '2026',
+    image: '/projects/weathr%20app.png',
+  },
+  {
+    id: 'gym-system',
+    name: 'Gym System',
+    category: 'Management Interface',
+    tagline: 'Fitness management interface for memberships, plans, activity tracking, and admin workflows with a sharp dashboard-style experience.',
+    stack: ['React.js', 'Dashboard UI', 'CSS3', 'UX Design'],
+    year: '2026',
+    image: '/projects/gym%20systm.png',
+  },
+  {
+    id: 'client-portfolio',
+    name: 'Client Portfolio',
+    category: 'Portfolio Interface',
+    tagline: 'Client portfolio interface with modern sections, responsive composition, polished visual rhythm, and a strong first impression for personal branding.',
+    stack: ['Next.js', 'React.js', 'Responsive UI', 'Figma'],
+    year: '2026',
+    image: '/projects/client%20portfolio%20interface%20.png',
+  },
+];
 
 // ─── Cube geometry ─────────────────────────────────────────────────────────────
 // Scene 0 = intro, scenes 1–16 = projects
@@ -374,6 +233,39 @@ function BackgroundCanvas() {
         zIndex: 0,
       }}
     />
+  );
+}
+
+function ProjectInterface({ project }: { project: Project }) {
+  return (
+    <div
+      className="absolute inset-0"
+      style={{
+        fontFamily: 'Satoshi, system-ui, sans-serif',
+        background: '#050505',
+        color: '#fff',
+        overflow: 'hidden',
+      }}
+    >
+      <Image
+        src={project.image}
+        alt={`${project.name} interface screenshot`}
+        fill
+        className="object-contain"
+        quality={92}
+        sizes="(max-width: 768px) 88vw, 700px"
+      />
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.14) 100%)',
+          boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)',
+        }}
+      />
+    </div>
   );
 }
 
@@ -776,19 +668,12 @@ export function Projects() {
                 >
                   {faceImages[fi] !== null && (
                     <>
-                      <Image
-                        src={PROJECTS[faceImages[fi]!].image}
-                        alt={PROJECTS[faceImages[fi]!].name}
-                        fill
-                        className="object-cover"
-                        quality={90}
-                        sizes="(max-width: 768px) 90vw, 1400px"
-                      />
+                      <ProjectInterface project={PROJECTS[faceImages[fi]!]} />
                       <div
                         style={{
                           position: 'absolute',
                           inset: 0,
-                          background: 'rgba(0,0,0,0.28)',
+                          background: 'rgba(0,0,0,0.08)',
                         }}
                       />
                     </>

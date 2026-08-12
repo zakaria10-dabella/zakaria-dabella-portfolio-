@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Cybersage — Abakwe Carrington | Software Engineer & Systems Architect, Lagos, Nigeria',
-    short_name: 'Cybersage',
+    name: 'Zakaria Dabella | Full-Stack Developer, Graphic Designer, UI/UX Designer',
+    short_name: 'Zakaria Dabella',
     description:
-      'Portfolio of Abakwe Carrington — software engineer and Infrastructure & Systems Architect based in Lagos, Nigeria. Available for hire worldwide.',
+      'Portfolio of Zakaria Dabella — Full-Stack Developer, IT Support Technician, Graphic Designer, and UI/UX Designer based in Casablanca, Morocco.',
     id: '/',
     start_url: '/',
     display: 'standalone',
@@ -15,19 +15,19 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: 'en',
     icons: [
       {
-        src: '/sage/icon-192.png',
+        src: '/zakaria-logo.png',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'any',
       },
       {
-        src: '/sage/icon-512.png',
+        src: '/zakaria-logo.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any',
       },
       {
-        src: '/sage/icon-512.png',
+        src: '/zakaria-logo.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable',

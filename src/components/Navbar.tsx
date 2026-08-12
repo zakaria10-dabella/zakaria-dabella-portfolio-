@@ -12,9 +12,7 @@ const NAV_LINKS = [
   { label: 'About',       href: '#about',                         chevron: false },
   { label: 'Experience',  href: '#experience',                    chevron: false },
   { label: 'Credentials', href: '#credentials',                   chevron: false },
-  { label: 'Reviews',     href: '#testimonials',                  chevron: false },
   { label: 'FAQ',         href: '#faq-section',                   chevron: false },
-  { label: 'Pricing',     href: 'https://cybersage.dev/pricing',  chevron: false },
 ];
 
 const SPRING = { type: 'spring' as const, stiffness: 280, damping: 32, mass: 0.75 };
@@ -23,7 +21,7 @@ function NavLink({ label, href, chevron }: { label: string; href: string; chevro
   return (
     <a
       href={href}
-      className="flex items-center gap-1 px-2.5 py-2 rounded-full text-[0.62rem] font-medium tracking-wide uppercase hover:bg-white/8 transition-all duration-200 whitespace-nowrap"
+      className="flex items-center gap-1 px-2 py-2 rounded-full text-[0.58rem] font-medium tracking-wide uppercase hover:bg-white/8 transition-all duration-200 whitespace-nowrap"
       style={{ fontFamily: 'Satoshi, system-ui, sans-serif', color: '#D9D9D9', mixBlendMode: 'difference' }}
     >
       {label}
@@ -85,8 +83,8 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  /* Compact ≈ logo(160) + sep + 8 links(~580) + sep + CTA(~90) + padding ≈ 900 */
-  const COMPACT_W = 920;
+  /* Compact ≈ logo/title + links + CTA */
+  const COMPACT_W = 1120;
   const targetW   = scrolled ? expandedW : COMPACT_W;
 
   return (
@@ -116,17 +114,20 @@ export function Navbar() {
             isolation: 'isolate',
           }}
         >
-          {/* Logo — always left */}
-          <a href="#" className="flex items-center shrink-0 mr-3" aria-label="Cybersage">
+          <a href="#" className="flex items-center shrink-0 mr-4 min-w-[270px]" aria-label="Zakaria Dabella - Full-Stack Developer">
             <Image
-              src="/sage/sage_horiz1_white.png"
-              alt="Cybersage"
-              width={200}
-              height={50}
+              src="/zakaria-logo.png"
+              alt="Zakaria Dabella logo"
+              width={42}
+              height={42}
               priority
-              className="block object-contain"
-              style={{ height: 46, width: 'auto' }}
+              className="object-contain"
+              style={{ width: 42, height: 42 }}
             />
+            <span className="ml-3 text-white/70 text-[0.56rem] tracking-[0.16em] uppercase hidden lg:inline leading-tight" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+              Zakaria Dabella<br />
+              <span className="text-white/35">Full-Stack Developer</span>
+            </span>
           </a>
 
           {/* Separator */}
@@ -166,14 +167,17 @@ export function Navbar() {
             }}
           >
             <Image
-              src="/sage/sage_horiz1_white.png"
-              alt="Cybersage"
-              width={200}
-              height={50}
+              src="/zakaria-logo.png"
+              alt="Zakaria Dabella logo"
+              width={34}
+              height={34}
               priority
-              className="block object-contain"
-              style={{ height: 38, width: 'auto' }}
+              className="object-contain"
+              style={{ width: 34, height: 34 }}
             />
+            <span className="ml-2 text-white/65 text-[0.52rem] tracking-[0.14em] uppercase leading-tight" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+              Zakaria Dabella
+            </span>
           </a>
 
           {/* Menu pill */}
@@ -256,7 +260,10 @@ export function Navbar() {
                 className="mt-auto pt-8"
               >
                 <button
-                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent('open-contact-modal')); }}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    window.dispatchEvent(new CustomEvent('open-contact-modal'));
+                  }}
                   className="flex items-center justify-center gap-2 bg-white text-black rounded-full py-4 w-full"
                 >
                   <span className="text-[0.68rem] font-medium tracking-[0.18em] uppercase" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>

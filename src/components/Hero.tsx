@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@_!∆';
 const EASE = [0.22, 1, 0.36, 1] as const;
-const STACK_TAGS = ['AWS', 'Docker', 'Go', 'PostgreSQL', 'Redis', 'Next.js'];
+const STACK_TAGS = ['React.js', 'Laravel', 'Next.js', 'Figma', 'MySQL', 'PHP'];
 
 function runScramble(el: HTMLElement, duration = 900, delay = 0) {
   animate(el, {
@@ -207,7 +207,7 @@ export function Hero() {
               className="text-[0.6rem] font-medium tracking-[0.15em] uppercase"
               style={{ fontFamily: 'Satoshi, system-ui, sans-serif', color: '#D9D9D9', mixBlendMode: 'difference' }}
             >
-              Lagos, Nigeria · Remote Worldwide
+              Casablanca, Morocco · Remote Available
             </span>
           </motion.div>
 
@@ -223,8 +223,8 @@ export function Hero() {
               mixBlendMode: 'difference',
             }}
           >
-            <span ref={line1Ref} className="block cursor-default select-none">Abakwe</span>
-            <span ref={line2Ref} className="block cursor-default select-none">Carrington</span>
+            <span ref={line1Ref} className="block cursor-default select-none">Zakaria</span>
+            <span ref={line2Ref} className="block cursor-default select-none">Dabella</span>
           </h1>
 
           {/* Italic serif tagline — auto-inverting like the name above it */}
@@ -241,7 +241,7 @@ export function Hero() {
               mixBlendMode: 'difference',
             }}
           >
-            Infrastructure &amp; Systems Architect designing distributed platforms for regulated industries — from embedded edge to cloud.
+            Full-Stack Developer • IT Support Technician • Graphic &amp; UI/UX Designer — delivering end-to-end technical solutions with creative design.
           </p>
 
           {/* Bottom row: stack + CTA */}
@@ -312,7 +312,7 @@ export function Hero() {
           className="text-[0.55rem] tracking-[0.25em] uppercase [writing-mode:vertical-rl] rotate-180"
           style={{ fontFamily: 'Satoshi, system-ui, sans-serif', color: '#D9D9D9', mixBlendMode: 'difference' }}
         >
-          Systems · Cloud · Distributed · Remote
+          Dev · Design · IT Support · Creative
         </span>
       </div>
       </div>

@@ -15,53 +15,53 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
-    id: 'who-is-abakwe',
+    id: 'who-is-zakaria',
     category: 'Background',
-    question: 'Who is Abakwe Carrington?',
+    question: 'Who is Zakaria Dabella?',
     answer:
-      'Abakwe Carrington (also known as Cybersage or Donrington) is an Infrastructure & Systems Architect and Senior Software Engineer based in Lagos, Nigeria. Over the past 5+ years, he has designed, built, and operated high-availability distributed systems, cloud infrastructure (AWS, Docker, Kubernetes, Terraform), and Go & Django backends for global clients across North America, Europe, Australia, and Africa.',
+      'Zakaria Dabella is a versatile Technology & Design Professional based in Casablanca, Morocco. He combines full-stack web development, IT infrastructure support, and graphic/UI-UX design to deliver practical digital solutions.',
   },
   {
     id: 'services-offered',
     category: 'Services',
-    question: 'What engineering services does Cybersage offer?',
+    question: 'What services does Zakaria offer?',
     answer:
-      'Abakwe Carrington specializes in four core areas: 1) Systems Architecture & System Design (blueprinting microservice boundaries and database schemas), 2) Cloud Infrastructure & DevOps (AWS setups, IaC with Terraform, Docker containerisation, and automated zero-downtime CI/CD pipelines), 3) Distributed Backend & API Engineering (Go and Django services with rate-limiting and caching), and 4) Full Stack Web Engineering (high-performance Next.js and React web apps).',
+      'Zakaria works across full-stack web development, UI/UX design, graphic design, branding, IT support, Windows administration, network diagnostics, and AI-assisted technical workflows.',
   },
   {
     id: 'remote-global',
     category: 'Location & Remote',
-    question: 'Does Abakwe Carrington work with international clients remotely?',
+    question: 'Where is Zakaria based?',
     answer:
-      'Yes, absolutely. While based in Lagos, Nigeria (WAT / GMT+1), Abakwe works seamlessly with startups, scale-ups, and enterprises worldwide across US, UK, European, Canadian, and Australian time zones.',
+      'Zakaria is based in Casablanca, Morocco, and is open to local opportunities as well as remote projects and collaborations.',
   },
   {
-    id: 'wytnest-platform',
+    id: 'featured-projects',
     category: 'Featured Project',
-    question: 'What is Wytnest and how does it work?',
+    question: 'What projects are featured here?',
     answer:
-      'Wytnest is a video and written testimonial platform built by Abakwe Carrington. It isolates embeddable video widgets using Shadow DOM technology to guarantee zero style leakage on client websites. It features automated AI speech-to-text transcription to convert video reviews into searchable quotes, and supports multi-currency billing (USD & NGN) via Stripe and Paystack.',
+      'Featured work includes Na9l Pro logistics platform, a car rental booking web app, brand identity and digital ad campaigns, and a restaurant interactive QR menu.',
   },
   {
     id: 'tech-stack',
     category: 'Technology Stack',
-    question: 'What is Abakwe Carrington’s primary technology stack?',
+    question: 'What is Zakaria’s primary technology stack?',
     answer:
-      'Core stack includes AWS, Docker, Kubernetes, Terraform, Go (Golang), Python (Django, FastAPI), PostgreSQL, Redis, Next.js, React, and TypeScript. He also has expertise in WebRTC streaming, OpenCV computer vision, HIPAA-compliant security architecture, and timeseries data.',
+      'Core stack includes HTML5, CSS3, JavaScript, PHP, Laravel, React.js, Next.js, Java, MySQL, REST APIs, Git, GitHub, Figma, Adobe Photoshop, Illustrator, Adobe XD, and Windows/network support tools.',
   },
   {
     id: 'how-to-hire',
     category: 'Engagement',
-    question: 'How can I hire or contact Abakwe Carrington for a project?',
+    question: 'How can I contact Zakaria?',
     answer:
-      'You can reach out directly via email at abakwecarrington@gmail.com, connect on LinkedIn or Twitter (@CarlSwitch_CHUG), or send a message through the contact section below. He is available for remote full-time engineering roles, contract infrastructure work, and system architecture consulting.',
+      'You can reach Zakaria directly at zakariaadabella@gmail.com, call +212 705 805 992, connect on LinkedIn, or view code and projects on GitHub at github.com/zakaria10-dabella.',
   },
 ];
 
 export function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
   const sectionInView = useInView(sectionRef, { once: true, margin: '-10%' });
-  const [openId, setOpenId] = useState<string | null>('who-is-abakwe');
+  const [openId, setOpenId] = useState<string | null>('who-is-zakaria');
 
   const toggle = (id: string) => {
     setOpenId(openId === id ? null : id);
@@ -120,7 +120,7 @@ export function FAQ() {
             className="text-black/50 text-xs sm:text-sm max-w-md font-medium tracking-wide uppercase"
             style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
           >
-            Direct answers on architecture experience, stack specialisations, project delivery, and global remote engagement.
+            Direct answers on development, design, IT support, projects, and contact details.
           </motion.p>
         </div>
 

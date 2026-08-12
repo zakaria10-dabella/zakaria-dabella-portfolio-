@@ -5,16 +5,16 @@ import { motion } from 'framer-motion';
 
 // ─── Floating vocabulary ───────────────────────────────────────────────────────
 const WORDS = [
-  'Next.js',     'Go',           'Django',        'PostgreSQL',
-  'Redis',       'Docker',       'AWS',           'WebSockets',
-  'TypeScript',  'React',        'Node.js',       'Python',
-  'Microservices','REST APIs',   'CI/CD',         'Nginx',
-  'Scalable',    'Resilient',    'Performant',    'Real-time',
-  'Idempotent',  'Distributed',  'Type-safe',     'Secure',
+  'React.js',    'Laravel',      'Next.js',       'PHP',
+  'MySQL',       'JavaScript',   'HTML5',         'CSS3',
+  'Figma',       'Photoshop',    'Illustrator',   'UI/UX Design',
+  'REST APIs',   'Git',          'GitHub',        'Branding',
+  'Windows',     'Networking',   'Troubleshooting','Help Desk',
+  'Prototyping', 'Wireframing',  'Responsive',    'AI-Assisted',
 ];
 
-const LINE1 = 'Built to Scale.';
-const LINE2 = 'Engineered.';
+const LINE1 = 'Crafted with Care.';
+const LINE2 = 'Designed to Last.';
 
 // ─── Seeded pseudo-random — stable across SSR/CSR ─────────────────────────────
 function sr(seed: number) {
@@ -59,7 +59,7 @@ function buildFloatWords(): FloatWord[] {
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 // ─── Count-up ─────────────────────────────────────────────────────────────────
-function CountUp({ target, suffix = '+', duration = 1600 }: { target: number; suffix?: string; duration?: number }) {
+function CountUp({ target, suffix = '', duration = 1600 }: { target: number; suffix?: string; duration?: number }) {
   const [display, setDisplay] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
@@ -353,9 +353,9 @@ export function Stack() {
           transition={{ duration: 0.6, delay: 0.7, ease: EASE }}
         >
           {[
-            { target: 5,  label: 'Years' },
-            { target: 50, label: 'Projects' },
-            { target: 12, label: 'Technologies' },
+            { target: 1,  label: 'Disciplines' },
+            { target: 4,  label: 'Projects' },
+            { target: 10, label: 'Core Skills' },
           ].map((stat, idx) => (
             <div key={idx} style={{ textAlign: 'center' }}>
               <div
@@ -368,6 +368,7 @@ export function Stack() {
                   lineHeight: 1,
                 }}
               >
+                <span style={{display: 'inline-block', marginRight: '0.18ch'}}>+</span>
                 <CountUp target={stat.target} duration={1600 + idx * 200} />
               </div>
               <div

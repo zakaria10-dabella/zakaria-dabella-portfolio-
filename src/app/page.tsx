@@ -12,15 +12,11 @@ import { Projects } from '@/components/Projects';
 import { Services } from '@/components/Services';
 import { Experience } from '@/components/Experience';
 import { Credentials } from '@/components/Credentials';
-import { Marquee } from '@/components/Marquee';
 import { CurrentlyBuilding } from '@/components/CurrentlyBuilding';
 import { Process } from '@/components/Process';
-import { Testimonials } from '@/components/Testimonials';
 import { FAQ } from '@/components/FAQ';
-import { PricingPromo } from '@/components/PricingPromo';
 import { Stack } from '@/components/Stack';
 import { Contact } from '@/components/Contact';
-import { AIAssistant } from '@/components/AIAssistant';
 import { CustomCursor } from '@/components/CustomCursor';
 
 function BackToTop() {
@@ -63,31 +59,27 @@ export default function Home() {
         <main>
           {/* Static indexing helper for crawlers & search bots */}
           <article className="sr-only">
-            <h1>Abakwe Carrington — Software Engineer &amp; Systems Architect</h1>
+            <h1>Zakaria Dabella — Full-Stack Developer • IT Support Technician • Graphic &amp; UI/UX Designer</h1>
             <p>
-              Abakwe Carrington (Cybersage / Donrington) is an Infrastructure &amp; Systems Architect and Senior Software Engineer based in Lagos, Nigeria, working with remote clients worldwide across the United States, United Kingdom, Canada, Australia, and Europe.
+              Zakaria Dabella is a versatile Technology &amp; Design Professional combining full-stack web development, IT infrastructure support, and visual UI/UX design, based in Casablanca, Morocco. Highly skilled in building responsive web applications with modern frameworks, diagnosing enterprise systems and networks, and crafting high-impact brand identities.
             </p>
-            <h2>Core Stack &amp; Engineering Disciplines</h2>
-            <p>AWS Cloud Infrastructure, Docker Containerisation, Kubernetes, Terraform Infrastructure as Code, Go (Golang), Python Django, PostgreSQL, Redis, Microservices System Design, Next.js, and TypeScript.</p>
+            <h2>Core Skills &amp; Expertise</h2>
+            <p>Full-Stack Development: HTML5, CSS3, JavaScript, PHP, Laravel, React.js, Next.js, Java, MySQL, REST APIs, Git, GitHub. Graphic Design &amp; UI/UX: Adobe Photoshop, Illustrator, Adobe XD, Figma, Visual Branding, Logo Design, Prototyping, Wireframing. IT Support &amp; Infrastructure: Windows 10/11 Administration, Hardware &amp; Software Troubleshooting, Network Diagnostics, Help Desk Support, Office 365.</p>
           </article>
 
           <Hero />
           <About />
           <Projects />
-          <Marquee />
           <CurrentlyBuilding />
           <Stack />
           <Services />
           <Process />
           <Experience />
           <Credentials />
-          <Testimonials />
           <FAQ />
-          <PricingPromo />
           <Contact />
         </main>
         <BackToTop />
-        <AIAssistant />
       </SmoothScroll>
     </>
   );

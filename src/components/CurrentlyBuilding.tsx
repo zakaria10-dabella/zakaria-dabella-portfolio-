@@ -3,56 +3,20 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const ORION_CHIPS = [
-  { label: 'AI Inference',   detail: 'YOLOv8-nano person & object detection' },
-  { label: 'Thermal Sensing', detail: 'Pipeline leak detection layer' },
-  { label: 'Protobuf',       detail: 'DetectionEvent real-time schema' },
+const NA9L_CHIPS = [
+  { label: 'Backend', detail: 'Laravel API and MySQL data model' },
+  { label: 'Frontend', detail: 'React.js interface for transport workflows' },
+  { label: 'Design', detail: 'Interactive logistics UI and dashboard flow' },
 ];
 
-const WYTNEST_CHIPS = [
-  { label: 'Multi-tenant',  detail: 'RLS-enforced workspace isolation' },
-  { label: 'Video',         detail: 'Cloudflare R2 + Stream HLS delivery' },
-  { label: 'Dual payments', detail: 'Paystack NGN · Stripe USD' },
+const DESIGN_CHIPS = [
+  { label: 'Visual Identity', detail: 'Logos, color systems, and guidelines' },
+  { label: 'Ads', detail: 'Promotional creatives for digital campaigns' },
+  { label: 'Prototype', detail: 'Figma and Adobe XD interface mockups' },
 ];
-
-/* Wytnest inline logo — "wyt" white, "nest" subdued, indigo circle */
-function WytnestLogo() {
-  return (
-    <div className="flex items-center gap-2.5">
-      <span
-        className="relative flex h-7 w-7 items-center justify-center rounded-full ring-1 ring-white/10"
-        style={{ background: '#5B4FCF' }}
-      >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M6 7L12 17L18 7"
-            stroke="#fff"
-            strokeWidth="2.3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <circle cx="12" cy="7" r="2" fill="#E8960F" />
-        </svg>
-      </span>
-      <span
-        style={{
-          fontFamily:    'Satoshi, system-ui, sans-serif',
-          fontWeight:    800,
-          fontSize:      '0.9rem',
-          letterSpacing: '-0.025em',
-          color:         'rgba(255,255,255,0.88)',
-        }}
-      >
-        wyt
-        <span style={{ fontWeight: 300, color: 'rgba(255,255,255,0.42)' }}>nest</span>
-      </span>
-    </div>
-  );
-}
 
 interface Chip { label: string; detail: string }
 
@@ -153,7 +117,7 @@ function Row({
             className="text-[0.58rem] tracking-[0.2em] uppercase font-medium"
             style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
           >
-            View Live
+            View
           </span>
           <ArrowUpRight
             size={12}
@@ -186,28 +150,26 @@ export function CurrentlyBuilding() {
               Currently Building
             </span>
           </span>
-          {/* NextGen logo */}
-          <div className="relative h-7 w-32 opacity-70 hidden sm:block">
-            <Image
-              src="/logo/NEXTGEN PL (Landscape) WHITE.png"
-              alt="NextGen Robotics"
-              fill
-              className="object-contain object-left"
-            />
-          </div>
         </div>
       ),
-      name:    'Orion',
-      tagline: 'distributed AI surveillance, embedded edge to browser.',
-      chips:   ORION_CHIPS,
-      link:    'https://app.nextgenerationrobotics.org/',
+      name:    'Na9l Pro',
+      tagline: 'transport and logistics platform, from backend structure to user interface.',
+      chips:   NA9L_CHIPS,
+      link:    '#work',
     },
     {
-      logoSlot: <WytnestLogo />,
-      name:     'Wytnest',
-      tagline:  'testimonial SaaS — campaigns, video collection, embeddable widgets.',
-      chips:    WYTNEST_CHIPS,
-      link:     'https://wytnest.vercel.app',
+      logoSlot: (
+        <span className="inline-flex items-center gap-2 border border-white/14 px-3 py-1.5">
+          <span className="w-1.5 h-1.5 bg-white/50" />
+          <span className="text-[0.55rem] tracking-[0.24em] uppercase text-white/50 font-semibold" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+            Design Work
+          </span>
+        </span>
+      ),
+      name:     'Brand Identity & Digital Ads',
+      tagline:  'logo assets, brand guidelines, and campaign visuals.',
+      chips:    DESIGN_CHIPS,
+      link:     '#work',
     },
   ];
 

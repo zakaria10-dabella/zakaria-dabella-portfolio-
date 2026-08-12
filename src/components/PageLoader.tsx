@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
+import Image from 'next/image';
 
 export function PageLoader({ onDone }: { onDone: () => void }) {
   const panelRefs  = useRef<(HTMLDivElement | null)[]>([]);
@@ -127,12 +127,12 @@ export function PageLoader({ onDone }: { onDone: () => void }) {
         style={{ opacity: 0 }}
       >
         <Image
-          src="/sage/sage_prim_white.png"
-          alt="Cybersage"
-          width={520}
-          height={140}
+          src="/zakaria-logo.png"
+          alt="Zakaria Dabella logo"
+          width={220}
+          height={150}
           priority
-          style={{ height: 'clamp(60px, 12vw, 130px)', width: 'auto', objectFit: 'contain', opacity: 0.88 }}
+          className="h-auto w-[clamp(7rem,18vw,13rem)] object-contain"
         />
 
         {/* Loading indicator below logo */}

@@ -3,19 +3,17 @@ import { Resend } from 'resend';
 import fs from 'fs';
 import path from 'path';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function readLogoB64(filename: string): string {
   try {
-    const buf = fs.readFileSync(path.join(process.cwd(), 'public', 'logo', filename));
+    const buf = fs.readFileSync(path.join(process.cwd(), 'public', filename));
     return `data:image/png;base64,${buf.toString('base64')}`;
   } catch {
     return '';
   }
 }
 
-const LOGO_HORIZONTAL = readLogoB64('cybersage_horizontal.png');
-const LOGO_ICON = readLogoB64('cybersage_icon.png');
+const LOGO_HORIZONTAL = readLogoB64('zakaria-logo.png');
+const LOGO_ICON = readLogoB64('zakaria-logo.png');
 
 function emailTemplate({ name, email, message }: { name: string; email: string; message: string }) {
   return `<!DOCTYPE html>
@@ -23,7 +21,7 @@ function emailTemplate({ name, email, message }: { name: string; email: string; 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>New Message — Abakwe Carrington</title>
+  <title>New Message — Zakaria Dabella</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,7 +43,7 @@ function emailTemplate({ name, email, message }: { name: string; email: string; 
                   <td>
                     <img
                       src="${LOGO_HORIZONTAL}"
-                      alt="Cybersage"
+                      alt="Zakaria Dabella logo"
                       width="140"
                       style="display:block; height:auto;"
                     />
@@ -141,7 +139,7 @@ function emailTemplate({ name, email, message }: { name: string; email: string; 
                   </td>
                   <td align="right">
                     <p style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.18);">
-                      abakwecarrington@gmail.com
+                      zakariaadabella@gmail.com
                     </p>
                   </td>
                 </tr>
@@ -153,8 +151,8 @@ function emailTemplate({ name, email, message }: { name: string; email: string; 
           <tr>
             <td style="padding-top: 20px;">
               <p style="font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.12); line-height:1.8;">
-                This message was submitted via the contact form at cybersage.dev<br/>
-                © 2026 Abakwe Carrington · All rights reserved
+                This message was submitted via Zakaria Dabella's portfolio contact form.<br/>
+                © 2026 Zakaria Dabella · All rights reserved
               </p>
             </td>
           </tr>
@@ -176,9 +174,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
 
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json({ error: 'Missing RESEND_API_KEY' }, { status: 500 });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const { error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: 'abakwecarrington@gmail.com',
+      to: 'zakariaadabella@gmail.com',
       replyTo: email,
       subject: `New message from ${name} — Portfolio`,
       html: emailTemplate({ name, email, message }),

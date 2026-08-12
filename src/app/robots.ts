@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://cybersage.dev';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://zakaria-dabella.dev';
 
 export default function robots(): MetadataRoute.Robots {
   return {

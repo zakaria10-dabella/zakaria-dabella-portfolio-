@@ -73,3 +73,9 @@ body {
     padding-top: clamp(5.5rem, 15vw, 7rem);
   }
 }
+
+/* Hide Next.js / Turbopack dev indicator (development-only UI) */
+/* Targets common IDs/classes/attributes used by Next's dev UI without touching runtime code */
+#__next_dev, .next-dev, .next-dev-overlay, .next-devtools, .next-dev-indicator { display: none !important; }
+button[title*="Next"], button[aria-label*="Next"], div[aria-label*="Next"], div[class*="next-dev"], div[id*="next-dev"] { display: none !important; }
+

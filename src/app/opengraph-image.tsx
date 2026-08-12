@@ -4,14 +4,14 @@ import { join } from 'path';
 
 export const runtime = 'nodejs';
 export const alt =
-  'Abakwe Carrington — Software Engineer & Systems Architect in Lagos, Nigeria';
+  'Zakaria Dabella — Full-Stack Developer, IT Support Technician & UI/UX Designer in Casablanca, Morocco';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const STACK = ['AWS', 'Docker', 'Go', 'Django', 'PostgreSQL', 'Redis'];
+const STACK = ['Laravel', 'React.js', 'Next.js', 'MySQL', 'Figma', 'IT Support'];
 
 export default function Image() {
-  const logoBuffer = readFileSync(join(process.cwd(), 'public/logo/logo_white.png'));
+  const logoBuffer = readFileSync(join(process.cwd(), 'public/zakaria-logo.png'));
   const logoSrc = `data:image/png;base64,${logoBuffer.toString('base64')}`;
 
   return new ImageResponse(
@@ -45,7 +45,7 @@ export default function Image() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={logoSrc}
-            alt="Cybersage"
+            alt="Zakaria Dabella logo"
             width={104}
             height={66}
             style={{ objectFit: 'contain' }}
@@ -62,7 +62,7 @@ export default function Image() {
               textTransform: 'uppercase',
             }}
           >
-            Software Engineer &amp; Systems Architect — Lagos, Nigeria
+            Full-Stack Developer · IT Support · UI/UX — Casablanca, Morocco
           </span>
 
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -75,7 +75,7 @@ export default function Image() {
                 letterSpacing: '-0.03em',
               }}
             >
-              Abakwe
+              Zakaria
             </span>
             <span
               style={{
@@ -86,7 +86,7 @@ export default function Image() {
                 letterSpacing: '-0.03em',
               }}
             >
-              Carrington
+              Dabella
             </span>
           </div>
 
@@ -99,8 +99,8 @@ export default function Image() {
               margin: '6px 0 0',
             }}
           >
-            Software engineer &amp; systems architect in Lagos, Nigeria — 5+ years
-            architecting distributed, production-grade systems. Available for hire worldwide.
+            Technology and design professional building responsive web apps, brand identities,
+            IT support workflows, and practical digital products.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function Image() {
               letterSpacing: '0.08em',
             }}
           >
-            cybersage.dev
+            github.com/zakaria10-dabella
           </span>
         </div>
       </div>

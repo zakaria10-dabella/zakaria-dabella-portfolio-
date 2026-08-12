@@ -11,163 +11,28 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const EXPERIENCE = [
   {
-    year: '2026',
-    role: 'Full Stack Developer',
-    company: 'Recoverderm',
-    type: 'Contract · Remote',
-    bullets: [
-      'HIPAA-compliant patient portals with JWT rotation and encrypted data flows — zero compliance violations.',
-      'Role-based access across patient, clinician, and admin layers, cutting unauthorized access surface by 60%.',
-      'Automated workflows reduced manual admin overhead by 40%. Deployed on AWS with zero-downtime releases.',
-    ],
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-  },
-  {
     year: '2025',
-    role: 'Full Stack Developer',
-    company: 'Anoc.ng',
-    type: 'Contract · Remote',
+    role: 'IT Support Intern',
+    company: 'Etablissement Kennedy et Cie (EKC)',
+    type: 'Internship · Casablanca',
     bullets: [
-      'Compliance platform for Chartered Accountants — client intake, documents, and audits in one encrypted system.',
-      'Multi-tenant architecture with strict data isolation supporting 50+ concurrent client cases.',
-      'Automated approval chains cut manual processing time by 50% and eliminated missed compliance deadlines.',
+      'Assisted the IT department with daily helpdesk ticket resolutions, workstation setups, and system upgrades.',
+      'Supported troubleshooting for Windows environments, business applications, and local network issues.',
+      'Helped maintain reliable user support routines through clear communication and fast issue escalation.',
     ],
-    stack: ['Next.js', 'Node.js', 'PostgreSQL'],
+    stack: ['Help Desk', 'Windows 10/11', 'Office 365', 'Networking'],
   },
   {
-    year: '2025',
-    role: 'Software Engineer',
-    company: 'NextGen Robotics',
-    type: 'Contract · Remote',
+    year: '2023 - 2024',
+    role: 'IT Support Technician & Data Handler',
+    company: 'Etablissement Kennedy et Cie (EKC)',
+    type: 'Full-time · Casablanca',
     bullets: [
-      'Scalable Django backend on cloud infrastructure — 30% performance gain through architecture optimisation.',
-      'CI/CD pipelines and automated provisioning cut deployment time by 45%.',
-      'Zero-trust security and VPN infrastructure reduced vulnerabilities by 20%, downtime by 35%.',
+      'Delivered 1st-level technical support, diagnosing and resolving hardware, software, and local network issues.',
+      'Configured and deployed Windows operating systems, business applications, workstations, and network peripherals.',
+      'Monitored daily IT infrastructure operations, database routines, and automated data backup systems.',
     ],
-    stack: ['Next.js', 'Go', 'AWS'],
-  },
-  {
-    year: '2025',
-    role: 'Sr. Full Stack Developer',
-    company: 'Autoboy',
-    type: 'Full-time · Remote',
-    bullets: [
-      'Scaled a dual-sided automotive marketplace with real-time inventory and Go microservices backend.',
-      'Redis caching + connection pool tuning delivered 30% faster DB responses under peak load.',
-      'Rate-limiting and circuit-breaker layers eliminated cascading failures across payment APIs.',
-    ],
-    stack: ['React', 'Go', 'PostgreSQL', 'Redis'],
-  },
-  {
-    year: '2024',
-    role: 'Full Stack Developer',
-    company: 'Axflo Oil & Gas',
-    type: 'Contract · Remote',
-    bullets: [
-      'Full-stack corporate site with Django — improved operational communication efficiency by 40%.',
-      'Job application module with automated email notifications improved processing efficiency by 50%.',
-      'Newsletter system increased subscriber engagement by 35%. Frontend performance up 30% post-integration.',
-    ],
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-  },
-  {
-    year: '2024',
-    role: 'Web Developer',
-    company: 'KRK Motors',
-    type: 'Contract · Remote',
-    bullets: [
-      'Premium brand site with GSAP animations — sub-1s load time, 98/100 Lighthouse score.',
-      'Custom scroll-driven animation system tuned to the luxury automotive identity.',
-    ],
-    stack: ['Next.js', 'Tailwind', 'GSAP'],
-  },
-  {
-    year: '2024',
-    role: 'Full Stack Developer',
-    company: 'Rokeyla Fashion',
-    type: 'Contract · Remote',
-    bullets: [
-      'Full e-commerce platform with Stripe, live inventory sync via pg_notify, and order lifecycle management.',
-      'Eliminated overselling during demand spikes. Reduced manual dispatch coordination by 55%.',
-    ],
-    stack: ['Next.js', 'Stripe', 'PostgreSQL'],
-  },
-  {
-    year: '2024',
-    role: 'Web Developer',
-    company: 'Samdus Oil and Gas',
-    type: 'Contract · Remote',
-    bullets: [
-      '98/100 Lighthouse score, sub-1s LCP, full Core Web Vitals compliance on INP, LCP, and CLS.',
-      'SEO-first SSR architecture with structured data and custom scroll-driven animation system.',
-    ],
-    stack: ['Next.js', 'Django'],
-  },
-  {
-    year: '2024',
-    role: 'Web Developer',
-    company: 'Handyman & Contractors',
-    type: 'Contract · Remote',
-    bullets: [
-      'Conversion-optimised lead gen site — qualified inquiries tripled within 30 days of launch.',
-      'CRM webhooks and automated lead routing ensured immediate team follow-up on every submission.',
-    ],
-    stack: ['React', 'Node.js', 'Tailwind'],
-  },
-  {
-    year: '2024',
-    role: 'Lead Full Stack Developer',
-    company: 'Amanigo Travels',
-    type: 'Contract · Remote',
-    bullets: [
-      'Booking engine, itinerary builder, and CMS with real-time pricing APIs from global travel providers.',
-      'Idempotent payment API prevented duplicate charges and race conditions across concurrent bookings.',
-    ],
-    stack: ['Next.js', 'Django', 'PostgreSQL'],
-  },
-  {
-    year: '2024',
-    role: 'Team Leader',
-    company: 'Zidio',
-    type: 'Internship · Remote',
-    bullets: [
-      'Led 8 developers across 2 software products — 50% increase in user engagement, 100% deadline hit rate.',
-      'Scrum implementation improved team productivity by 65% and cut feature cycle time by 50%.',
-    ],
-    stack: ['Agile', 'Jira', 'Scrum'],
-  },
-  {
-    year: '2023',
-    role: 'Lead Back-End Engineer',
-    company: 'Dejaii',
-    type: 'Contract · Remote',
-    bullets: [
-      'Built the API integration layer across multiple services into a unified, fault-tolerant pipeline.',
-      'Rewrote critical queries and added caching — significantly reduced p95 latency on high-traffic endpoints.',
-    ],
-    stack: ['Django', 'PostgreSQL', 'REST API'],
-  },
-  {
-    year: '2021',
-    role: 'Full Stack Developer',
-    company: 'Xtus Connect',
-    type: 'Full-time · Remote',
-    bullets: [
-      'Owned full web app lifecycle — architecture through client handoff — over a 2+ year engagement.',
-      'Resolved DB and SSR bottlenecks, improving page load times by 35% across the platform.',
-    ],
-    stack: ['React', 'Django', 'PostgreSQL'],
-  },
-  {
-    year: '2019',
-    role: 'QA Engineer',
-    company: 'Nigerian Bottling Company',
-    type: 'Internship · On-site',
-    bullets: [
-      'Automated Brix level monitoring across production lines — manual inspection cycles cut by 40%.',
-      'Built test harnesses and dashboards giving ops real-time visibility into quality metrics.',
-    ],
-    stack: ['Python', 'Selenium', 'PostgreSQL'],
+    stack: ['IT Support', 'TCP/IP', 'DNS/DHCP', 'Backup Monitoring'],
   },
 ];
 
@@ -665,7 +530,7 @@ export function Experience() {
             }}
           >
             <span ref={labelRef} style={{ ...S.label, color: '#D9D9D9', mixBlendMode: 'difference' }}>
-              01 · Full Stack Developer · Recoverderm
+              01 · IT Support Intern · EKC
             </span>
             <span style={{ ...S.micro, color: '#D9D9D9', mixBlendMode: 'difference' }}>
               ← Drag to navigate →

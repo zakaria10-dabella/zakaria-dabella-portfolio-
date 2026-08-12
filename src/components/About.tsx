@@ -9,20 +9,19 @@ import Image from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { label: 'Years of Experience', target: 5,   suffix: '+' },
-  { label: 'Projects Shipped',    target: 50,  suffix: '+' },
-  { label: 'Global Clients',      target: 40, suffix: '+' },
-  { label: 'Countries Served',    target: 8,   suffix: ''  },
+  { label: 'Year of Experience',  target: 1,   suffix: '' },
+  { label: 'Featured Projects',   target: 4,   suffix: '' },
+  { label: 'Core Skills',         target: 10,  suffix: '' },
+  { label: 'Disciplines',         target: 3,   suffix: ''  },
 ];
 
 const COUNTRIES = [
-  'Nigeria', 'United States', 'Canada', 'United Kingdom',
-  'Australia', 'India', 'Ghana', 'Kenya',
+  'Morocco', 'Remote Worldwide',
 ];
 
 const QUOTE_WORDS = [
-  'I', 'architect', 'systems', 'that', "don’t", 'just', 'work', '—',
-  'they', 'scale,', 'survive', 'failure,', 'and', 'stay', 'clean', 'under', 'pressure.',
+  'I', 'build', 'digital', 'solutions', 'that', 'combine', 'clean', 'code,',
+  'solid', 'infrastructure,', 'and', 'impactful', 'design.',
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -179,8 +178,44 @@ export function About() {
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(3rem,6vw,8rem)]">
 
-          {/* Left: stats + countries */}
+          {/* Left: portrait + stats + countries */}
           <div className="flex flex-col gap-[clamp(2.5rem,4vw,3.5rem)]">
+          {/* Profile image — tied to the stats so it reads as a deliberate bio panel */}
+          <div
+            ref={imageRef}
+            className="relative aspect-[5/4] w-full overflow-hidden bg-[#f5f5f5] border border-black/10"
+          >
+            <Image
+              src="/zakaria-about.jpeg"
+              alt="Zakaria Dabella working on a laptop in Casablanca, Morocco"
+              fill
+              className="object-cover object-[50%_36%]"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.82) 100%)',
+              }}
+            />
+            <div className="absolute left-5 right-5 bottom-5 flex items-end justify-between gap-5">
+              <p
+                className="text-[0.58rem] tracking-[0.2em] uppercase text-black/45 font-semibold"
+                style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
+              >
+                Casablanca · Morocco
+              </p>
+              <p
+                className="hidden sm:block text-[0.58rem] tracking-[0.2em] uppercase text-black/35 font-semibold text-right"
+                style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
+              >
+                Dev · Design · IT
+              </p>
+            </div>
+          </div>
+
           <div ref={statsRef} className="grid grid-cols-2 gap-x-8 gap-y-12 content-start">
             {STATS.map((stat, i) => (
               <motion.div
@@ -226,7 +261,7 @@ export function About() {
             ))}
           </div>
 
-          {/* Countries served */}
+          {/* Countries & Languages */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
@@ -236,7 +271,7 @@ export function About() {
               className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase text-black/35 mb-4"
               style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
             >
-              Shipped across
+              Based in · Languages
             </p>
             <div className="flex flex-wrap gap-2">
               {COUNTRIES.map((country, i) => (
@@ -249,6 +284,18 @@ export function About() {
                   style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
                 >
                   {country}
+                </motion.span>
+              ))}
+              {['Arabic (Native)', 'English (Professional)', 'French (Intermediate)'].map((lang, i) => (
+                <motion.span
+                  key={lang}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.7 + i * 0.05, ease: EASE }}
+                  className="border border-black/12 px-3 py-1.5 text-[0.68rem] font-medium tracking-[0.06em] text-black/50"
+                  style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
+                >
+                  {lang}
                 </motion.span>
               ))}
             </div>
@@ -274,10 +321,7 @@ export function About() {
                   fontSize:   'clamp(1.05rem, 1.5vw, 1.3rem)',
                 }}
               >
-                A software engineer based in Lagos, Nigeria — 5+ years designing and running
-                production systems for global clients: multi-tenant compliance platforms, HIPAA
-                medical portals, high-traffic marketplaces. I own the system end-to-end:
-                architecture, infrastructure, backend, delivery.
+                Versatile Technology &amp; Design Professional based in Casablanca, Morocco — combining full-stack web development, IT infrastructure support, and visual UI/UX design. I deliver end-to-end technical solutions: from responsive web apps with modern frameworks to enterprise system diagnostics and high-impact brand identities.
               </p>
               <p
                 className="text-black/40 leading-relaxed"
@@ -287,8 +331,7 @@ export function About() {
                   fontSize:   'clamp(1rem, 1.3vw, 1.15rem)',
                 }}
               >
-                Core: AWS, Docker, Go, Django, PostgreSQL, Redis, CI/CD. Fluent in Next.js for
-                when the system needs a face. I care about the whole system — not just the feature.
+                Core stack: HTML5, CSS3, JavaScript, PHP, Laravel, React.js, Next.js, Java, MySQL, and REST APIs. Design and support work spans Figma, Adobe tools, Windows administration, network diagnostics, help desk support, and backup monitoring.
               </p>
 
               <motion.div
@@ -298,7 +341,7 @@ export function About() {
                 transition={{ duration: 0.6, delay: 0.8, ease: EASE }}
               >
                 <a
-                  href="https://github.com/Donrington"
+                  href="https://github.com/zakaria10-dabella"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[0.65rem] tracking-[0.18em] uppercase font-medium text-black/40 hover:text-black border-b border-black/20 hover:border-black pb-px transition-colors"
@@ -307,7 +350,7 @@ export function About() {
                   GitHub
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/carrington-abakwe-b0b0a0217"
+                  href="https://www.linkedin.com/in/zakaria-dabella"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[0.65rem] tracking-[0.18em] uppercase font-medium text-black/40 hover:text-black border-b border-black/20 hover:border-black pb-px transition-colors"
@@ -316,22 +359,25 @@ export function About() {
                   LinkedIn
                 </a>
               </motion.div>
+
+              <motion.div
+                className="flex gap-4 pt-2"
+                initial={{ opacity: 0 }}
+                animate={sectionInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.95, ease: EASE }}
+              >
+                <a
+                  href="https://www.behance.net/zkrdbl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[0.65rem] tracking-[0.18em] uppercase font-medium text-black/40 hover:text-black border-b border-black/20 hover:border-black pb-px transition-colors"
+                  style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
+                >
+                  Behance
+                </a>
+              </motion.div>
             </motion.div>
 
-            {/* Headshot — GSAP clip reveal */}
-            <div
-              ref={imageRef}
-              className="relative aspect-4/3 w-full overflow-hidden bg-black/4"
-            >
-              <Image
-                src="/me.png"
-                alt="Abakwe Carrington — software engineer and Infrastructure & Systems Architect based in Lagos, Nigeria"
-                fill
-                className="object-cover object-top grayscale"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 mix-blend-multiply bg-white/10" />
-            </div>
           </div>
         </div>
       </div>

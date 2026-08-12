@@ -12,11 +12,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 // ─── Floating background vocabulary ───────────────────────────────────────────
 const FLOAT_WORDS = [
-  'Certified', 'Verified', '2025', 'Architecture',
-  'IBT Learning', '2024', 'Moat Academy', 'Zidio',
-  'Engineering', 'Infrastructure', 'Systems', 'Cloud',
-  'Internship', 'PostgreSQL', 'Accredited', 'Remote',
-  'Awarded', 'Completed', '5+ Years', 'Production',
+  'Developer', 'Designer', '2026', 'Laravel',
+  'React.js', '2024', 'IMAP Center', 'Casablanca',
+  'IT Support', 'Infrastructure', 'UI/UX', 'Branding',
+  'Internship', 'MySQL', 'Figma', 'Remote',
+  'Completed', 'Education', '3 Disciplines', 'Portfolio',
 ];
 
 function sr(seed: number) {
@@ -59,24 +59,24 @@ function buildFloatItems(): FloatItem[] {
 const CERTIFICATIONS = [
   {
     num: '01',
-    title: 'Full Stack Engineering',
-    issuer: 'IBT Learning',
-    year: '2025',
-    file: '/certificates/Carrington Abakwe - 2025-08-04 - Full stack engineering Certificate (IBT Learning).pdf',
+    title: 'Specialized Technician in Software Development',
+    issuer: 'IMAP Center · Casablanca',
+    year: '2024 - 2026',
+    file: '/resume/Zakaria-Dabella-Resume.pdf',
   },
   {
     num: '02',
-    title: 'Web Application Development',
-    issuer: 'Moat Academy',
+    title: 'Moroccan Baccalaureate Diploma',
+    issuer: 'Morocco',
     year: '2024',
-    file: '/certificates/Abakwe Carrington - Web application development (Moat Academy).jpeg',
+    file: '/resume/Zakaria-Dabella-Resume.pdf',
   },
   {
     num: '03',
-    title: 'Web Development Internship',
-    issuer: 'Zidio Development',
-    year: '2024',
-    file: '/certificates/Zidio Development - Web Devlopment Internship.jpeg',
+    title: 'IT Support & Data Handling Experience',
+    issuer: 'Etablissement Kennedy et Cie (EKC)',
+    year: '2023 - 2025',
+    file: '/resume/Zakaria-Dabella-Resume.pdf',
   },
 ];
 
@@ -348,7 +348,7 @@ function GitHubActivity({ sectionInView }: { sectionInView: boolean }) {
             </span>
           </div>
           <a
-            href="https://github.com/Donrington"
+            href="https://github.com/zakaria10-dabella"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-white/25 hover:text-white/60 transition-colors duration-200"
@@ -357,7 +357,7 @@ function GitHubActivity({ sectionInView }: { sectionInView: boolean }) {
               className="text-[0.55rem] tracking-[0.18em] uppercase"
               style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
             >
-              @Donrington
+              @zakaria10-dabella
             </span>
             <ExternalLink size={10} />
           </a>
@@ -624,33 +624,14 @@ export function Credentials() {
             fontSize: 'clamp(2.8rem, 7vw, 8rem)',
           }}
         >
-          {(['Proof', 'of'] as const).map((word, i) => (
-            <span key={word} className="inline-block overflow-hidden mr-[0.22em]">
-              <motion.span
-                className="block"
-                initial={{ y: '110%' }}
-                animate={sectionInView ? { y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.05 + i * 0.1, ease: EASE }}
-              >
-                {word}
-              </motion.span>
-            </span>
-          ))}
-          {' '}
           <span className="inline-block overflow-hidden">
             <motion.span
               className="block"
-              style={{
-                fontFamily: 'var(--font-instrument), Georgia, serif',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'rgba(255,255,255,0.28)',
-              }}
               initial={{ y: '110%' }}
               animate={sectionInView ? { y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.28, ease: EASE }}
+              transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
             >
-              Work
+              Resume
             </motion.span>
           </span>
         </h2>
@@ -682,7 +663,7 @@ export function Credentials() {
                 animate={resumeInView ? { opacity: 1 } : {}}
                 transition={{ delay: 0.35, duration: 0.5 }}
               >
-                Resume · PDF · 2025
+                Resume · PDF · 2026
               </motion.span>
 
               <div className="overflow-hidden">
@@ -697,7 +678,7 @@ export function Credentials() {
                   animate={resumeInView ? { y: 0 } : {}}
                   transition={{ delay: 0.22, duration: 0.75, ease: EASE }}
                 >
-                  Abakwe Carrington
+                  Zakaria Dabella
                 </motion.h3>
               </div>
 
@@ -712,12 +693,12 @@ export function Credentials() {
                 animate={resumeInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.42, duration: 0.55, ease: EASE }}
               >
-                Infrastructure &amp; Systems Architect — 5+ years · Remote
+                Full-Stack Developer · IT Support Technician · Graphic &amp; UI/UX Designer
               </motion.p>
 
               {/* Stack tags */}
               <div className="flex flex-wrap gap-2 mt-1">
-                {['AWS', 'Docker', 'Go', 'Django', 'PostgreSQL', 'Redis'].map((tag, i) => (
+                {['Laravel', 'React.js', 'Next.js', 'MySQL', 'Figma', 'IT Support'].map((tag, i) => (
                   <motion.span
                     key={tag}
                     className="border border-white/12 text-white/28 text-[0.52rem] tracking-[0.16em] uppercase px-2.5 py-1"
@@ -739,7 +720,7 @@ export function Credentials() {
               animate={resumeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
             >
-              <MagneticBtn href="/resume/Abakwe Carrington.pdf" />
+              <MagneticBtn href="/resume/Zakaria-Dabella-Resume.pdf" />
             </motion.div>
           </div>
 

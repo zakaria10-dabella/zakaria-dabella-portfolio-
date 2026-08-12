@@ -9,31 +9,31 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const STEPS = [
   {
     index: '01',
-    title: 'Discovery',
-    duration: 'Days 1–3',
-    body: 'We start with the problem, not the tech. I map your goals, users, and constraints, then turn them into a scoped plan with clear deliverables — so you know exactly what you’re getting and when.',
-    tags: ['Goals', 'Scope', 'Timeline'],
+    title: 'Understand',
+    duration: 'Start',
+    body: 'I begin by understanding what you need, who the project is for, and what result should be clear at the end. From there, I turn the idea into a simple scope, timeline, and list of priorities.',
+    tags: ['Goals', 'Scope', 'Priorities'],
   },
   {
     index: '02',
-    title: 'Architecture',
-    duration: 'Week 1',
-    body: 'I design the system before writing a line of production code — data models, API contracts, infrastructure, and security boundaries. The result is software that scales cleanly instead of collapsing under its own weight.',
-    tags: ['System Design', 'Data Models', 'Security'],
+    title: 'Plan & Design',
+    duration: 'Planning',
+    body: 'I sketch the structure, screens, user flow, and technical pieces before building. This keeps the work organized, practical, and close to what the project really needs.',
+    tags: ['User Flow', 'UI Plan', 'Structure'],
   },
   {
     index: '03',
-    title: 'Build & Ship',
-    duration: 'Core sprint',
-    body: 'Tight, visible iterations. You see working software early and often, with weekly check-ins and a live staging URL. Momentum over perfection — high-impact features first, polished relentlessly.',
-    tags: ['Iterative', 'Weekly Demos', 'Staging'],
+    title: 'Build & Improve',
+    duration: 'Core work',
+    body: 'I build the interface, backend, or design assets in focused steps, then test and refine the details. You get progress updates while the project moves from rough version to polished result.',
+    tags: ['Frontend', 'Backend', 'Testing'],
   },
   {
     index: '04',
     title: 'Launch & Support',
-    duration: 'Go-live +',
-    body: 'Zero-downtime deployment, performance tuning, and a hand-off you can actually maintain. I stay on after launch to monitor, fix, and extend — your platform keeps getting better, not stale.',
-    tags: ['Deploy', 'Monitoring', 'Handover'],
+    duration: 'After delivery',
+    body: 'Once everything is ready, I help launch it, check the important details, and support fixes or updates after delivery. The goal is a project that works well and stays easy to maintain.',
+    tags: ['Launch', 'Fixes', 'Updates'],
   },
 ];
 
@@ -180,8 +180,8 @@ export function Process() {
             animate={sectionInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
           >
-            Hiring an architect shouldn’t feel like a gamble. Here’s the exact, predictable path
-            from first conversation to a launched, maintainable product — no disappearing acts.
+            A clear workflow keeps the project calm and practical. Here is how I take an idea from
+            first conversation to a working result, with visible progress at each step.
           </motion.p>
         </div>
 

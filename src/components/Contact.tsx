@@ -6,17 +6,22 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { ArrowUpRight, X } from 'lucide-react';
-import Image from 'next/image';
 import { ContactCanvas } from './ContactCanvas';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const EMAIL = 'zakariaadabella@gmail.com';
+const PHONE_DISPLAY = '+212 705 805 992';
+const WHATSAPP_URL =
+  'https://wa.me/212705805992?text=Hi%20Zakaria%2C%20I%20saw%20your%20portfolio%20and%20I%20would%20like%20to%20discuss%20a%20project.';
+const EMAIL_URL =
+  'mailto:zakariaadabella@gmail.com?subject=Project%20Inquiry%20from%20Portfolio&body=Hi%20Zakaria%2C%0A%0AI%20saw%20your%20portfolio%20and%20I%20would%20like%20to%20discuss%20a%20project.%0A%0AProject%20details%3A%0ABudget%3A%0ATimeline%3A';
 
 const SOCIALS = [
   {
     label: 'GitHub',
-    href: 'https://github.com/Donrington',
+    href: 'https://github.com/zakaria10-dabella',
     svg: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
@@ -25,7 +30,7 @@ const SOCIALS = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/carrington-abakwe-b0b0a0217',
+    href: 'https://www.linkedin.com/in/zakaria-dabella',
     svg: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -33,8 +38,18 @@ const SOCIALS = [
     ),
   },
   {
-    label: 'X',
-    href: 'https://x.com/CarlSwitch_CHUG',
+    label: 'Behance',
+    href: 'https://www.behance.net/zkrdbl',
+    svg: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <text x="12" y="16" fontSize="10" textAnchor="middle" fontFamily="Satoshi, system-ui, sans-serif" fontWeight="700">B</text>
+      </svg>
+    ),
+  },
+  {
+    label: 'Email',
+    href: EMAIL_URL,
     svg: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.258 5.63 5.906-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -89,62 +104,12 @@ function MagneticCTA({
   );
 }
 
-/* ── Validation ───────────────────────────────────────────────────────────── */
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-type FormState = { name: string; email: string; message: string };
-type FieldErrors = Record<keyof FormState, string>;
-
-function getErrors(f: FormState): FieldErrors {
-  return {
-    name: f.name.trim().length < 2 ? 'Please enter your name.' : '',
-    email: !EMAIL_RE.test(f.email.trim()) ? 'Enter a valid email address.' : '',
-    message: f.message.trim().length < 10 ? 'A little more detail helps (10+ characters).' : '',
-  };
-}
-
 /* ── Contact modal ────────────────────────────────────────────────────────── */
 function ContactModal({ intent, onClose }: { intent: 'message' | 'call'; onClose: () => void }) {
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    message: intent === 'call' ? 'I’d like to book a quick call to discuss a project. My availability / timezone is: ' : '',
-  });
-  const [touched, setTouched] = useState({ name: false, email: false, message: false });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
-
-  const errors = getErrors(form);
-  const isValid = !errors.name && !errors.email && !errors.message;
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!isValid) {
-      setTouched({ name: true, email: true, message: true });
-      return;
-    }
-    setStatus('sending');
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      setStatus(res.ok ? 'sent' : 'error');
-    } catch {
-      setStatus('error');
-    }
-  };
-
-  const fieldClass = (hasError: boolean) =>
-    `w-full bg-transparent border ${hasError ? 'border-red-400/50 focus:border-red-400/70' : 'border-white/12 focus:border-white/40'} text-white placeholder:text-white/18 px-5 py-3.5 text-sm focus:outline-none transition-colors duration-200`;
-
-  const errorClass =
-    'text-[0.58rem] tracking-[0.04em] text-red-400/70 mt-1.5 block';
 
   return (
     <motion.div
@@ -200,7 +165,7 @@ function ContactModal({ intent, onClose }: { intent: 'message' | 'call'; onClose
                   fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
                 }}
               >
-                {intent === 'call' ? 'Let’s' : 'Start a'}{' '}
+                Choose how to{' '}
                 <span
                   style={{
                     fontFamily: 'var(--font-instrument), Georgia, serif',
@@ -209,7 +174,7 @@ function ContactModal({ intent, onClose }: { intent: 'message' | 'call'; onClose
                     color: 'rgba(255,255,255,0.32)',
                   }}
                 >
-                  {intent === 'call' ? 'talk' : 'conversation'}
+                  contact me
                 </span>
               </h2>
             </div>
@@ -221,134 +186,44 @@ function ContactModal({ intent, onClose }: { intent: 'message' | 'call'; onClose
             </button>
           </div>
 
-          <AnimatePresence mode="wait">
-            {status === 'sent' ? (
-              <motion.div
-                key="sent"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="py-12 text-center"
-              >
-                <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
-                <p
-                  className="text-white/55 leading-relaxed mb-2"
-                  style={{
-                    fontFamily: 'var(--font-instrument), Georgia, serif',
-                    fontStyle: 'italic',
-                    fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
-                  }}
-                >
-                  Message received.
-                </p>
-                <p
-                  className="text-white/30 text-sm"
-                  style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                >
-                  I&apos;ll be in touch within 24 hours.
-                </p>
-                <button
-                  onClick={onClose}
-                  className="mt-8 text-[0.6rem] tracking-[0.2em] uppercase text-white/25 hover:text-white/60 transition-colors"
-                  style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                >
-                  Close
-                </button>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      className="block text-[0.58rem] tracking-[0.18em] uppercase text-white/28 mb-2 font-medium"
-                      style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      value={form.name}
-                      onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                      onBlur={() => setTouched((p) => ({ ...p, name: true }))}
-                      className={fieldClass(touched.name && !!errors.name)}
-                      style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                      placeholder="Your name"
-                      aria-invalid={touched.name && !!errors.name}
-                    />
-                    {touched.name && errors.name && (
-                      <span className={errorClass} style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>{errors.name}</span>
-                    )}
-                  </div>
-                  <div>
-                    <label
-                      className="block text-[0.58rem] tracking-[0.18em] uppercase text-white/28 mb-2 font-medium"
-                      style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-                      onBlur={() => setTouched((p) => ({ ...p, email: true }))}
-                      className={fieldClass(touched.email && !!errors.email)}
-                      style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                      placeholder="your@email.com"
-                      aria-invalid={touched.email && !!errors.email}
-                    />
-                    {touched.email && errors.email && (
-                      <span className={errorClass} style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>{errors.email}</span>
-                    )}
-                  </div>
-                </div>
+          <p
+            className="text-white/35 leading-relaxed mb-6"
+            style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
+          >
+            Pick WhatsApp for a fast reply, or email if you want to send project details.
+          </p>
 
-                <div>
-                  <label
-                    className="block text-[0.58rem] tracking-[0.18em] uppercase text-white/28 mb-2 font-medium"
-                    style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-                    onBlur={() => setTouched((p) => ({ ...p, message: true }))}
-                    className={`${fieldClass(touched.message && !!errors.message)} resize-none`}
-                    style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                    placeholder="Tell me about your project..."
-                    aria-invalid={touched.message && !!errors.message}
-                  />
-                  {touched.message && errors.message && (
-                    <span className={errorClass} style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>{errors.message}</span>
-                  )}
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
+              className="group border border-white/12 bg-white text-black px-5 py-4 hover:bg-white/88 transition-colors duration-200"
+            >
+              <span className="block text-[0.58rem] tracking-[0.2em] uppercase text-black/45 font-semibold mb-2" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+                WhatsApp
+              </span>
+              <span className="flex items-center justify-between gap-4 text-sm font-semibold" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+                {PHONE_DISPLAY}
+                <ArrowUpRight size={14} className="shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </span>
+            </a>
 
-                {status === 'error' && (
-                  <p
-                    className="text-[0.6rem] tracking-[0.12em] text-red-400/70 font-medium"
-                    style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                  >
-                    Something went wrong — please try again or email directly.
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === 'sending' || !isValid}
-                  className="w-full bg-white text-black py-4 text-[0.62rem] tracking-[0.22em] uppercase font-semibold hover:bg-white/88 transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
-                  style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
-                >
-                  {status === 'sending' ? 'Sending...' : intent === 'call' ? 'Request Call' : 'Send Message'}
-                </button>
-              </motion.form>
-            )}
-          </AnimatePresence>
+            <a
+              href={EMAIL_URL}
+              onClick={onClose}
+              className="group border border-white/12 px-5 py-4 text-white/70 hover:text-white hover:border-white/35 hover:bg-white/[0.04] transition-colors duration-200"
+            >
+              <span className="block text-[0.58rem] tracking-[0.2em] uppercase text-white/28 font-semibold mb-2" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+                Email
+              </span>
+              <span className="flex items-center justify-between gap-4 text-sm font-semibold break-all" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+                {EMAIL}
+                <ArrowUpRight size={14} className="shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </span>
+            </a>
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -372,7 +247,7 @@ export function Contact() {
     return () => window.removeEventListener('open-contact-modal', handler);
   }, []);
 
-  /* ── CYBERSAGE wordmark animation ── */
+  /* ── Footer wordmark animation ── */
   useEffect(() => {
     const el = wordmarkRef.current;
     if (!el) return;
@@ -527,7 +402,7 @@ export function Contact() {
             <div className="overflow-hidden mb-8">
               <a
                 ref={emailRef}
-                href="mailto:abakwecarrington@gmail.com"
+                href={EMAIL_URL}
                 className="block font-black text-white tracking-[-0.04em] leading-[0.88] hover:text-white/45 transition-colors duration-300 will-change-transform"
                 style={{
                   fontFamily: 'Satoshi, system-ui, sans-serif',
@@ -536,7 +411,7 @@ export function Contact() {
                   wordBreak: 'break-all',
                 }}
               >
-                abakwecarrington@gmail.com
+                {EMAIL}
               </a>
             </div>
 
@@ -549,11 +424,11 @@ export function Contact() {
               <MagneticCTA label="Book a Call" variant="solid" onClick={() => setModal('call')} />
               <MagneticCTA label="Send a Message" onClick={() => setModal('message')} />
               <a
-                href="mailto:abakwecarrington@gmail.com"
+                href={EMAIL_URL}
                 className="text-[0.62rem] tracking-[0.18em] uppercase text-white/28 hover:text-white/60 transition-colors duration-200 font-medium"
                 style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
               >
-                or email directly →
+                or email directly
               </a>
             </motion.div>
           </div>
@@ -566,8 +441,8 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
           >
             {[
-              { label: 'Location', value: 'Lagos, Nigeria · Remote Worldwide' },
-              { label: 'Response', value: 'Within 24 hours' },
+              { label: 'Location', value: 'Casablanca, Morocco · Remote Available' },
+              { label: 'Phone', value: PHONE_DISPLAY },
               { label: 'Status', value: 'Available for projects', pulse: true },
             ].map((item, i) => (
               <div
@@ -618,7 +493,7 @@ export function Contact() {
                 userSelect: 'none',
               }}
             >
-              CYBERSAGE
+              ZAKARIA
             </span>
           </div>
 
@@ -626,19 +501,14 @@ export function Contact() {
 
             {/* Top row: logo + socials */}
             <div className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
-              {/* Logo */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={sectionInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.6, ease: EASE }}
               >
-                <Image
-                  src="/sage/sage_prim_white.png"
-                  alt="Cybersage"
-                  width={130}
-                  height={32}
-                  className="opacity-40 hover:opacity-70 transition-opacity duration-300"
-                />
+                <span className="text-white/45 font-black tracking-[-0.03em] text-2xl" style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}>
+                  ZD
+                </span>
               </motion.div>
 
               {/* Socials */}
@@ -677,7 +547,6 @@ export function Contact() {
                 { label: 'Process', href: '#process' },
                 { label: 'Experience', href: '#experience' },
                 { label: 'Credentials', href: '#credentials' },
-                { label: 'Reviews', href: '#testimonials' },
                 { label: 'Contact', href: '#contact' },
               ].map(({ label, href }) => (
                 <a
@@ -691,54 +560,6 @@ export function Contact() {
               ))}
             </motion.div>
 
-            {/* Launch record badge */}
-            <motion.div
-              className="flex justify-center sm:justify-start mb-10 sm:mb-12"
-              initial={{ opacity: 0 }}
-              animate={sectionInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.8, ease: EASE }}
-            >
-              <a
-                href="https://websitelaunches.com/site/cybersage.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 border border-white/10 px-4 py-3 hover:border-white/22 transition-all duration-300"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-white/22 group-hover:bg-white/50 shrink-0 transition-colors duration-300" />
-                <div className="flex flex-col gap-[3px]">
-                  <span
-                    style={{
-                      fontFamily: 'Satoshi, system-ui, sans-serif',
-                      fontSize: '0.52rem',
-                      letterSpacing: '0.28em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.35)',
-                      fontWeight: 600,
-                    }}
-                    className="group-hover:text-white/58 transition-colors duration-300"
-                  >
-                    Established Online
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'Satoshi, system-ui, sans-serif',
-                      fontSize: '0.44rem',
-                      letterSpacing: '0.18em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.16)',
-                      fontWeight: 500,
-                    }}
-                  >
-                    Public launch record
-                  </span>
-                </div>
-                <ArrowUpRight
-                  size={9}
-                  className="text-white/18 group-hover:text-white/45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 shrink-0"
-                />
-              </a>
-            </motion.div>
-
             {/* Bottom bar */}
             <motion.div
               className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 border-t border-white/6 pt-8"
@@ -750,13 +571,13 @@ export function Contact() {
                 className="text-[0.55rem] tracking-[0.16em] uppercase text-white/18 font-medium text-center sm:text-left"
                 style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
               >
-                © 2026 Abakwe Carrington · Cybersage · Software Engineer, Lagos, Nigeria
+                © 2026 Zakaria Dabella · Casablanca, Morocco
               </p>
               <p
                 className="text-[0.55rem] tracking-[0.14em] uppercase text-white/12 text-center sm:text-right"
                 style={{ fontFamily: 'Satoshi, system-ui, sans-serif' }}
               >
-                Designed &amp; Developed by Carrington
+                Full-Stack Development · IT Support · Graphic &amp; UI/UX Design
               </p>
             </motion.div>
           </div>  {/* end z-10 wrapper */}

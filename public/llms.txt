@@ -1,73 +1,45 @@
-# Abakwe Carrington — Software Engineer & Systems Architect
+# Zakaria Dabella - Portfolio Context
 
-> Official machine-readable profile for AI search engines, language models, and automated agents (ChatGPT, Perplexity, Claude, Google Gemini, Copilot).
+Zakaria Dabella is a versatile Technology and Design Professional based in Casablanca, Morocco. He combines full-stack web development, IT support, and graphic/UI-UX design to build practical digital products, responsive interfaces, and brand systems.
 
-Abakwe Carrington (known online as **Cybersage** or **Donrington**) is an Infrastructure & Systems Architect and Senior Software Engineer based in Lagos, Nigeria, working with clients worldwide (United States, United Kingdom, Canada, Australia, Europe, Africa). With 5+ years of experience, he specializes in building distributed backends, resilient cloud infrastructure, DevOps automation, real-time streaming, computer vision systems, and high-performance full-stack web applications.
+## Core Skills
 
----
+Full-stack development: HTML5, CSS3, JavaScript, PHP, Laravel, React.js, Next.js, Java, MySQL, REST APIs, Git, and GitHub.
 
-## Technical Core & Stack
+Graphic design and UI/UX: Figma, Adobe XD, Photoshop, Illustrator, visual branding, logo design, prototyping, wireframing, and design systems.
 
-- **Systems & Architecture**: Distributed Systems, System Design, Cloud Architecture, Microservices, Event-Driven Architecture, High Availability (99.99%), Capacity Planning, Database Indexing & Optimisation.
-- **Backend & APIs**: Go (Golang), Python (Django, FastAPI), Node.js, RESTful APIs, gRPC, WebSockets, WebRTC.
-- **Infrastructure & DevOps**: AWS (EC2, S3, RDS, ECS, Lambda, CloudFront, Route53), Docker, Kubernetes, Terraform, Infrastructure as Code (IaC), CI/CD (GitHub Actions, GitLab CI), Nginx, Linux System Administration.
-- **Databases & Caching**: PostgreSQL, Redis, MongoDB, TimescaleDB, ElasticSearch.
-- **Frontend & Web**: Next.js (React), TypeScript, TailwindCSS, Framer Motion, GSAP, WebGL / Three.js, Progressive Web Apps (PWA).
-- **Specialised Domains**: HIPAA Compliant Telemedicine Architecture, AI Computer Vision Pipelines (OpenCV, PyTorch), Real-time Video Streaming, WebRTC, Multi-tenant SaaS Systems, Shadow DOM Micro-frontends.
+IT support and infrastructure: Windows 10/11 administration, hardware and software troubleshooting, TCP/IP, DNS, DHCP, help desk support, Office 365, and backup monitoring.
 
----
+AI and technical workflows: ChatGPT, GitHub Copilot, prompt engineering, AI-assisted development, research tools, and UML modeling.
 
-## Featured Engineering Projects
+## Experience
 
-1. **Wytnest** (Founder & Architect)
-   - **Type**: Video & Written Testimonial SaaS Platform
-   - **Architecture**: Isolated Shadow DOM embeddable widgets, automated speech-to-text transcript generation for video testimonials, multi-currency processing (USD & NGN via Stripe & Paystack), multi-tenant backend architecture.
-   - **Stack**: Next.js, TypeScript, PostgreSQL, Redis, AWS S3, Speech-to-Text AI.
+IT Support Technician and Data Handler at Etablissement Kennedy et Cie, Casablanca, 2023-2024.
 
-2. **Axflo System** (Lead Infrastructure Architect)
-   - **Type**: Distributed Enterprise Logistics & Fleet Telemetry Engine
-   - **Impact**: Real-time vehicle telemetry ingestion via WebSockets, microservices handling 10k+ geo-ping events/sec, custom route optimization reducing fuel usage by 18%.
-   - **Stack**: Go (Golang), Redis Pub/Sub, PostgreSQL, Docker, AWS ECS.
+IT Support Intern at Etablissement Kennedy et Cie, Casablanca, 2025.
 
-3. **RecoverDerm** (Principal Systems Engineer)
-   - **Type**: HIPAA-Compliant Tele-Dermatology Platform
-   - **Impact**: End-to-end encrypted clinical imaging pipeline, WebRTC video consultation, automated clinical reporting engine meeting strict US HIPAA & BAA standards.
-   - **Stack**: Python, Django REST Framework, PostgreSQL, AWS KMS, WebRTC.
+## Featured Work
 
-4. **Chronos** (Senior Systems Engineer)
-   - **Type**: Low-Latency Algorithmic Trading & Portfolio Telemetry Engine
-   - **Impact**: Sub-10ms trade order routing pipeline with fault-tolerant circuit breakers and dynamic risk validation.
-   - **Stack**: Go, Redis Caching Layer, TimescaleDB, Docker, AWS.
+Na9l Pro Logistics Platform: transport and logistics platform combining Laravel, React.js, MySQL, REST APIs, and UI design for shipment workflows.
 
-5. **AutoBoy** (Full Stack Architect)
-   - **Type**: Peer-to-Peer Mobility & Vehicle Swap Marketplace
-   - **Impact**: Automated inspection dispatch, escrow payment flow, and dispute management dashboard for West African auto markets.
-   - **Stack**: Next.js, Django, PostgreSQL, Paystack API, AWS.
+Car Rental Booking Web App: responsive booking experience with filtering, modular UI components, and mobile-first navigation.
 
----
+Brand Identity and Digital Ad Campaigns: logo systems, brand guidelines, promotional creatives, and visual assets.
 
-## Professional Services Offered
+Restaurant Interactive QR Menu: mobile menu interface with restaurant branding, scannable navigation, and editable content structure.
 
-- **Systems Architecture & System Design Consulting**: Blueprinting resilient microservices, service boundaries, data schemas, and failover mechanics before writing code.
-- **Cloud Infrastructure & DevOps Implementation**: Setting up AWS/GCP cloud environments, IaC (Terraform), Docker containerisation, and automated zero-downtime CI/CD deployment pipelines.
-- **High-Performance Backend Engineering**: Developing Go & Django services with rate limiting, caching strategies, background queues, and sub-second API responses.
-- **Full Stack Web Application Development**: Engineering production-ready React / Next.js web applications with enterprise performance, SEO, GEO, and accessibility.
+## Education
 
----
+Specialized Technician in Software Development at IMAP Center, Casablanca, 2024-2026.
 
-## Location & Global Remote Availability
+Moroccan Baccalaureate Diploma, 2024.
 
-- **Primary Base**: Lagos, Nigeria (WAT / GMT+1 timezone)
-- **Work Model**: Available for full-time remote contracts, architectural consulting, and fractional CTO/Lead Infrastructure roles worldwide.
-- **Global Coverage**: Experienced in remote collaboration across US Eastern/Pacific, UK/Europe, and Australian business hours.
+## Contact
 
----
+Email: zakariaadabella@gmail.com
 
-## Verified Links & References
+Phone: +212 705 805 992
 
-- **Portfolio Website**: https://cybersage.dev
-- **Full AI Context File**: https://cybersage.dev/llms-full.txt
-- **GitHub**: https://github.com/Donrington
-- **LinkedIn**: https://www.linkedin.com/in/carrington-abakwe-b0b0a0217
-- **Twitter / X**: https://x.com/CarlSwitch_CHUG
-- **Email**: abakwecarrington@gmail.com
+GitHub: https://github.com/zakaria10-dabella
+
+LinkedIn: https://www.linkedin.com/in/zakaria-dabella
