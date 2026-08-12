@@ -438,6 +438,43 @@ export function Experience() {
     });
   }, []);
 
+  // Add global interaction/visibility handlers to help resume playback on
+  // mobile devices that block autoplay until user interaction.
+  useEffect(() => {
+    const vids = [mobileVideoRef.current, desktopVideoRef.current].filter(Boolean) as HTMLVideoElement[];
+    if (!vids.length) return;
+
+    const tryPlayAll = () => {
+      vids.forEach((v) => {
+        try {
+          v.muted = true;
+          v.setAttribute('playsinline', '');
+          v.setAttribute('webkit-playsinline', '');
+          const p = v.play();
+          if (p && typeof (p as Promise<void>).catch === 'function') (p as Promise<void>).catch(() => {});
+        } catch (e) {
+          // ignore
+        }
+      });
+    };
+
+    const onInteraction = () => tryPlayAll();
+    const onVisibility = () => { if (document.visibilityState === 'visible') tryPlayAll(); };
+    const onPause = (e: Event) => { const v = e.currentTarget as HTMLVideoElement; setTimeout(() => { try { v.play().catch(() => {}); } catch {} }, 200); };
+
+    window.addEventListener('pointerdown', onInteraction, { once: true });
+    window.addEventListener('touchstart', onInteraction, { once: true });
+    document.addEventListener('visibilitychange', onVisibility);
+    vids.forEach((v) => v.addEventListener('pause', onPause));
+
+    return () => {
+      window.removeEventListener('pointerdown', onInteraction);
+      window.removeEventListener('touchstart', onInteraction);
+      document.removeEventListener('visibilitychange', onVisibility);
+      vids.forEach((v) => v.removeEventListener('pause', onPause));
+    };
+  }, []);
+
   /* ── Shared header ── */
   const Header = (
     <div className="px-[clamp(1.25rem,5vw,5rem)] pt-[clamp(4rem,8vw,10rem)] pb-[clamp(2rem,4vw,4rem)]">
@@ -496,14 +533,12 @@ export function Experience() {
 
       {/* ── Mobile (< lg) ─────────────────────────────────────────── */}
       <div className="block lg:hidden relative overflow-hidden" style={{ isolation: 'isolate' }}>
-        <video
-          ref={mobileVideoRef}
-          autoPlay muted loop playsInline preload="auto"
-          poster="/exp_arch_poster.jpg"
+        {/* Use a static image on small screens to avoid autoplay issues */}
+        <img
+          src="/exp_arch_poster.jpg"
+          alt="experience background"
           className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        >
-          <source src="/exp_arch_opt.mp4" type="video/mp4" />
-        </video>
+        />
         {/* Light atmospheric lift only — text below is auto-inverting (mix-blend-mode:
             difference), so it no longer relies on this tint for legibility. */}
         <div className="absolute inset-0 z-1 pointer-events-none" style={{ background: 'rgba(255,255,255,0.12)' }} />
@@ -529,7 +564,7 @@ export function Experience() {
             ref={desktopVideoRef}
             autoPlay muted loop playsInline
             poster="/exp_arch_poster.jpg"
-            className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+            className="hidden lg:block absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
           >
             <source src="/exp_arch_opt.mp4" type="video/mp4" />
           </video>

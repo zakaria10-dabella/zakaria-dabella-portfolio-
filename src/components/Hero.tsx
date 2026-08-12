@@ -148,6 +148,50 @@ export function Hero() {
     }
   }, []);
 
+  // Add interaction and visibility handlers to recover playback when mobile
+  // prevents autoplay. Also attempt to restart if the video pauses.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const tryPlay = () => {
+      try {
+        v.muted = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        const p = v.play();
+        if (p && typeof (p as Promise<void>).catch === 'function') (p as Promise<void>).catch(() => {});
+      } catch (e) {
+        // ignore
+      }
+    };
+
+    const onInteraction = () => {
+      tryPlay();
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') tryPlay();
+    };
+
+    const onPause = () => {
+      // Small delay before retrying to avoid tight loops
+      setTimeout(tryPlay, 200);
+    };
+
+    window.addEventListener('pointerdown', onInteraction, { once: true });
+    window.addEventListener('touchstart', onInteraction, { once: true });
+    document.addEventListener('visibilitychange', onVisibility);
+    v.addEventListener('pause', onPause);
+
+    return () => {
+      window.removeEventListener('pointerdown', onInteraction);
+      window.removeEventListener('touchstart', onInteraction);
+      document.removeEventListener('visibilitychange', onVisibility);
+      v.removeEventListener('pause', onPause);
+    };
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -171,6 +215,13 @@ export function Hero() {
       >
       {/* Video background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Image fallback for mobile: show poster on small screens */}
+        <img
+          src="/hero_arch_poster.jpg"
+          alt="background"
+          className="block lg:hidden absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Video for desktop and large screens only */}
         <video
           ref={videoRef}
           autoPlay
@@ -179,7 +230,7 @@ export function Hero() {
           playsInline
           preload="auto"
           poster="/hero_arch_poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="hidden lg:block absolute inset-0 w-full h-full object-cover"
         >
           <source src="/hero_arch_opt.mp4" type="video/mp4" />
         </video>
