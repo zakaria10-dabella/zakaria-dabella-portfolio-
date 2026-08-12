@@ -29,6 +29,7 @@ function runScramble(el: HTMLElement, duration = 900, delay = 0) {
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
@@ -126,6 +127,27 @@ export function Hero() {
     };
   }, []);
 
+  // Ensure video autoplays on mobile: set muted/playsinline attributes and
+  // attempt to play programmatically. Some mobile browsers only allow autoplay
+  // when the video is muted and has the playsinline/webkit-playsinline flag.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    try {
+      v.muted = true;
+      // Ensure attributes exist for legacy iOS behavior
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      // Try to play — swallow errors (data-saver or user preferences may block)
+      const p = v.play();
+      if (p && typeof (p as Promise<void>).catch === 'function') {
+        (p as Promise<void>).catch(() => {});
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -150,6 +172,7 @@ export function Hero() {
       {/* Video background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop

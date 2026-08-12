@@ -314,6 +314,8 @@ export function Experience() {
   const trackRef    = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const labelRef    = useRef<HTMLSpanElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
   const sectionInView = useInView(sectionRef, { once: true, margin: '-12%' });
 
   useEffect(() => {
@@ -416,6 +418,26 @@ export function Experience() {
     return () => ctx.revert();
   }, []);
 
+  // Attempt to ensure videos autoplay on mobile by setting muted/playsinline
+  // and calling play(). This increases the chance mobile browsers will allow
+  // autoplay (especially iOS Safari which respects webkit-playsinline).
+  useEffect(() => {
+    [mobileVideoRef.current, desktopVideoRef.current].forEach((v) => {
+      if (!v) return;
+      try {
+        v.muted = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        const p = v.play();
+        if (p && typeof (p as Promise<void>).catch === 'function') {
+          (p as Promise<void>).catch(() => {});
+        }
+      } catch (e) {
+        // ignore
+      }
+    });
+  }, []);
+
   /* ── Shared header ── */
   const Header = (
     <div className="px-[clamp(1.25rem,5vw,5rem)] pt-[clamp(4rem,8vw,10rem)] pb-[clamp(2rem,4vw,4rem)]">
@@ -475,6 +497,7 @@ export function Experience() {
       {/* ── Mobile (< lg) ─────────────────────────────────────────── */}
       <div className="block lg:hidden relative overflow-hidden" style={{ isolation: 'isolate' }}>
         <video
+          ref={mobileVideoRef}
           autoPlay muted loop playsInline preload="auto"
           poster="/exp_arch_poster.jpg"
           className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
@@ -503,6 +526,7 @@ export function Experience() {
         <div ref={pinRef} data-cursor="drag" className="h-screen overflow-hidden relative" style={{ isolation: 'isolate' }}>
           {/* Video */}
           <video
+            ref={desktopVideoRef}
             autoPlay muted loop playsInline
             poster="/exp_arch_poster.jpg"
             className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
