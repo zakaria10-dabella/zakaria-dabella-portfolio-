@@ -227,15 +227,14 @@
   top: -78vh;
   width: 300vw;
   height: 200vh;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 18%, #000 40%);
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 18%, #000 40%);
-  background-color: #05050b;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 16%, #000 36%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 16%, #000 36%);
+  background-color: #1a110b;
   background-image:
-    linear-gradient(rgba(var(--glow, 120, 90, 255), 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--glow, 120, 90, 255), 0.22) 1px, transparent 1px);
-  background-size: 90px 90px;
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.5) 0 2px, transparent 2px 150px),
+    repeating-linear-gradient(0deg, rgba(255,200,140,0.05) 0 40px, rgba(0,0,0,0.07) 40px 80px, rgba(255,200,140,0.03) 80px 150px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0 1px, transparent 1px 7px);
 }
-@keyframes dz-grid { to { background-position: 0 90px, 90px 0; } }
 /* coloured reflection of the open artwork on the polished desk */
 .dz-light {
   position: absolute;
@@ -244,9 +243,7 @@
   width: calc(var(--pw) * 5.2);
   height: calc(var(--pw) * 3.2);
   transform: translateZ(0.01px);
-  background:
-    radial-gradient(ellipse 34% 30% at 50% 56%, rgba(var(--glow, 90, 60, 160), 0.46) 0%, rgba(var(--glow, 90, 60, 160), 0.18) 46%, transparent 78%),
-    radial-gradient(ellipse 52% 46% at 50% 56%, rgba(255, 226, 190, 0.1) 0%, transparent 72%);
+  background: radial-gradient(ellipse 36% 32% at 50% 56%, rgba(255, 190, 120, 0.22) 0%, rgba(255, 170, 90, 0.08) 50%, transparent 78%);
 }
 
 /* props lying on the desk */
@@ -895,3 +892,5 @@
 
 .dz-stage .leaf, .dz-stage .dz-scene { will-change: transform; }
 .dz-stage .pg { contain: layout paint; }
+
+.dz-stage::before { opacity: 0.35; }

@@ -585,16 +585,13 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
           <div className="dz-sweep" />
 
           <div className="prop-slot s-coin">
-            <Coin />
           </div>
           <div className="prop-slot s-pen">
             <Pen />
           </div>
           <div className="prop-slot s-coffee">
-            <Coffee />
           </div>
           <div className="prop-slot s-card">
-            <Card />
           </div>
 
           <div className={`dz-bookpos ${open > 0 ? 'open' : ''}`}>
