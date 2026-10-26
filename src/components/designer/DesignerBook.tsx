@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { WORKS, type Work } from './works';
+import { Backdrop } from './Backdrop';
 import './designer.css';
 
 /**
@@ -543,6 +544,12 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
     lightboxRef.current = lightbox;
   }, [lightbox]);
 
+  const tint = useMemo(() => {
+    const faces = [FACES[2 * open], FACES[2 * open - 1]];
+    for (const f of faces) if (f && f.kind === 'work') return f.work.tint;
+    return '#3a2a66';
+  }, [open]);
+
   const lastSpread = open === maxOpen;
 
   return (
@@ -566,10 +573,13 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
         <p>Click on pages to view works, hover to see how they act in motion</p>
       </div>
 
+      <Backdrop tint={tint} kick={open} />
+      <div className="dz-beam" aria-hidden />
       <div className="dz-scene">
         <div className="dz-desk">
           <div className="dz-wood" />
           <div className="dz-light" />
+          <div className="dz-sweep" />
 
           <div className="prop-slot s-coin">
             <Coin />

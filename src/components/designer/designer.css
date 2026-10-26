@@ -26,8 +26,8 @@
   pointer-events: none;
   z-index: 3;
   background:
-    linear-gradient(180deg, rgba(7, 5, 4, 0.92) 0%, rgba(7, 5, 4, 0.5) 20%, rgba(7, 5, 4, 0) 42%),
-    radial-gradient(110% 85% at 50% 64%, transparent 40%, rgba(5, 4, 3, 0.88) 100%);
+    radial-gradient(120% 90% at 50% 58%, transparent 48%, rgba(4, 3, 3, 0.8) 100%),
+    linear-gradient(180deg, rgba(5, 4, 4, 0.55) 0%, rgba(5, 4, 4, 0) 22%);
 }
 /* warm lamp glow behind everything */
 .dz-stage::before {
@@ -36,9 +36,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background:
-    radial-gradient(48% 40% at 50% 66%, rgba(255, 214, 160, 0.16), transparent 70%),
-    radial-gradient(70% 55% at 50% 100%, rgba(255, 190, 120, 0.08), transparent 70%);
+  display: none;
 }
 
 /* ── UI ── */
@@ -228,26 +226,29 @@
 .dz-wood {
   position: absolute;
   left: -150vw;
-  top: -140vh;
+  top: -78vh;
   width: 300vw;
-  height: 260vh;
-  background-color: #0c0807;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.006 0.2' numOctaves='4' seed='19' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0.34 0 0 0 -0.075  0.27 0 0 0 -0.065  0.2 0 0 0 -0.05  0 0 0 0 1'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
-  background-size: 1500px 840px;
+  height: 200vh;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 14%, #000 36%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 14%, #000 36%);
+  background-color: #07060a;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 72px),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.004 0.35' numOctaves='3' seed='19' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0.05 0 0 0 0  0.05 0 0 0 0  0.06 0 0 0 0  0 0 0 0 1'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
+  background-size: auto, auto, 1500px 840px;
 }
-/* the pool of lamp light on the desk: brighter, warmer grain revealed through a soft mask */
+/* coloured reflection of the open artwork on the polished desk */
 .dz-light {
   position: absolute;
-  left: calc(var(--pw) * -2.4);
-  top: calc(var(--pw) * -1.35);
-  width: calc(var(--pw) * 4.8);
-  height: calc(var(--pw) * 2.9);
+  left: calc(var(--pw) * -2.6);
+  top: calc(var(--pw) * -1.5);
+  width: calc(var(--pw) * 5.2);
+  height: calc(var(--pw) * 3.2);
   transform: translateZ(0.01px);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'><filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.006 0.2' numOctaves='4' seed='19' stitchTiles='stitch'/><feColorMatrix type='matrix' values='1.9 0 0 0 -0.5  1.55 0 0 0 -0.4  1.1 0 0 0 -0.27  0 0 0 0 1'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
-  background-size: 1500px 840px;
-  background-position: calc(var(--pw) * 2.4) calc(var(--pw) * 1.35);
-  -webkit-mask-image: radial-gradient(ellipse 30% 27% at 50% 60%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
-  mask-image: radial-gradient(ellipse 30% 27% at 50% 60%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%);
+  background:
+    radial-gradient(ellipse 34% 30% at 50% 56%, rgba(var(--glow, 90, 60, 160), 0.46) 0%, rgba(var(--glow, 90, 60, 160), 0.18) 46%, transparent 78%),
+    radial-gradient(ellipse 52% 46% at 50% 56%, rgba(255, 226, 190, 0.1) 0%, transparent 72%);
 }
 
 /* props lying on the desk */
@@ -813,5 +814,62 @@
   }
   .dz-progress {
     min-width: 92px;
+  }
+}
+
+/* ── living background ── */
+.dz-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.dz-stage .dz-scene {
+  z-index: 2;
+}
+/* lamp beam swaying from above */
+.dz-beam {
+  position: absolute;
+  z-index: 1;
+  top: -6vh;
+  left: 50%;
+  width: min(90vw, 1200px);
+  height: 86vh;
+  margin-left: calc(min(90vw, 1200px) / -2);
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 232, 196, 0.2) 0%, rgba(255, 220, 170, 0.06) 50%, transparent 92%);
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+  filter: blur(60px);
+  transform-origin: 50% 0;
+  animation: dz-beam 9s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+@keyframes dz-beam {
+  0% { transform: rotate(-3.2deg); opacity: 0.55; }
+  50% { opacity: 0.9; }
+  100% { transform: rotate(3.2deg); opacity: 0.6; }
+}
+/* a band of light travelling across the wood */
+.dz-sweep {
+  position: absolute;
+  left: -90vw;
+  top: -60vh;
+  width: 38vw;
+  height: 150vh;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 226, 184, 0.13), transparent);
+  transform: translateZ(0.02px) skewX(-16deg);
+  animation: dz-sweep 13s linear infinite;
+}
+@keyframes dz-sweep {
+  0% { transform: translateX(0) translateZ(0.02px) skewX(-16deg); }
+  100% { transform: translateX(190vw) translateZ(0.02px) skewX(-16deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dz-beam,
+  .dz-sweep {
+    animation: none;
   }
 }
