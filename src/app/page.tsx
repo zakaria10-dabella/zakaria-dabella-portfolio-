@@ -54,7 +54,6 @@ function DeveloperSite() {
 
   return (
     <>
-      <CustomCursor />
       {!loaded && <PageLoader onDone={() => setLoaded(true)} />}
       <SmoothScroll>
         <Navbar />
@@ -94,6 +93,7 @@ export default function Home() {
         <p>Full-Stack Development: HTML5, CSS3, JavaScript, PHP, Laravel, React.js, Next.js, Java, MySQL, REST APIs, Git, GitHub. Graphic Design &amp; UI/UX: Adobe Photoshop, Illustrator, Adobe XD, Figma, Visual Branding, Logo Design, Prototyping, Wireframing. IT Support &amp; Infrastructure: Windows 10/11 Administration, Hardware &amp; Software Troubleshooting, Network Diagnostics, Help Desk Support, Office 365.</p>
       </article>
 
+      <CustomCursor />
       {mode === null && <ModeGate onPick={setMode} />}
       {mode === 'developer' && <DeveloperSite />}
       {mode === 'designer' && <DesignerBook onBack={() => setMode(null)} />}

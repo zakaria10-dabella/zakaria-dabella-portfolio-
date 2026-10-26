@@ -52,13 +52,14 @@ function WorkPage({
   const ratio = work.w / work.h;
   const wide = ratio > 1.3;
   return (
-    <div className={`pg pg-work ${side} ${wide ? 'wide' : ''}`}>
+    <div className={`pg pg-work ${side} ${wide ? 'wide' : ''}`} style={{ '--tint': work.tint } as React.CSSProperties}>
       <div className="pg-media" style={{ aspectRatio: `${work.w} / ${work.h}` }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`/designer/${work.id}.webp`} alt={work.title} draggable={false} className="pg-img" />
         <button
           type="button"
           className="pg-expand"
+          data-cursor="view"
           aria-label={`View ${work.title} larger`}
           onClick={(e) => {
             e.stopPropagation();
@@ -265,6 +266,7 @@ function Leaf({
         <>
           <div
             className="face front"
+            data-cursor={j === 0 ? 'open' : 'flip'}
             onClick={onFront}
             role="button"
             tabIndex={flipped ? -1 : j === open ? 0 : -1}
@@ -273,7 +275,7 @@ function Leaf({
           >
             <Face index={2 * j} side="right" onExpand={onExpand} />
           </div>
-          <div className="face back" onClick={onBack} aria-hidden={!flipped}>
+          <div className="face back" data-cursor="flip" onClick={onBack} aria-hidden={!flipped}>
             <Face index={2 * j + 1} side="left" onExpand={onExpand} />
           </div>
         </>
@@ -389,6 +391,7 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
   const [lightbox, setLightbox] = useState<Work | null>(null);
   const timers = useRef<Record<number, number>>({});
   const stageRef = useRef<HTMLDivElement>(null);
+  const lightboxRef = useRef<Work | null>(null);
   const maxOpen = LEAVES - 1; // the last leaf's back is the back cover
 
   const go = useCallback(
@@ -443,6 +446,83 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
     });
   }, []);
 
+  // ── Scroll / swipe turns the pages and nudges the whole desk ──────────────
+  const openRef = useRef(0);
+  useEffect(() => {
+    openRef.current = open;
+  }, [open]);
+  const goRef = useRef(go);
+  useEffect(() => {
+    goRef.current = go;
+  }, [go]);
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    let acc = 0;
+    let lockUntil = 0;
+    let drift = 0;
+    let raf = 0;
+
+    const loop = () => {
+      drift *= 0.9;
+      if (Math.abs(drift) < 0.002) drift = 0;
+      el.style.setProperty('--drift', drift.toFixed(3));
+      raf = drift === 0 ? 0 : requestAnimationFrame(loop);
+    };
+    const nudge = (amount: number) => {
+      drift = Math.max(-1, Math.min(1, drift + amount));
+      if (!raf) raf = requestAnimationFrame(loop);
+    };
+    const step = (dir: number) => {
+      const now = performance.now();
+      if (now < lockUntil) return;
+      const cur = openRef.current;
+      if ((dir > 0 && cur >= maxOpen) || (dir < 0 && cur <= 0)) return;
+      lockUntil = now + 560;
+      acc = 0;
+      goRef.current(cur + dir);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (lightboxRef.current) return;
+      e.preventDefault();
+      const dy = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      nudge(Math.max(-0.35, Math.min(0.35, dy / 260)));
+      acc += dy;
+      if (Math.abs(acc) > 70) step(acc > 0 ? 1 : -1);
+    };
+
+    let startY = 0;
+    let startX = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (lightboxRef.current) return;
+      const dy = startY - e.touches[0].clientY;
+      const dx = startX - e.touches[0].clientX;
+      const d = Math.abs(dy) > Math.abs(dx) ? dy : dx;
+      nudge(Math.max(-0.3, Math.min(0.3, d / 400)));
+      if (Math.abs(d) > 46) {
+        step(d > 0 ? 1 : -1);
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+      }
+    };
+
+    el.addEventListener('wheel', onWheel, { passive: false });
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: true });
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [maxOpen]);
+
   // gentle camera parallax following the pointer
   useEffect(() => {
     const el = stageRef.current;
@@ -459,10 +539,14 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
 
   const leaves = useMemo(() => Array.from({ length: LEAVES }, (_, j) => j), []);
 
+  useEffect(() => {
+    lightboxRef.current = lightbox;
+  }, [lightbox]);
+
   const lastSpread = open === maxOpen;
 
   return (
-    <div ref={stageRef} className={`dz-stage ${open > 0 ? 'is-open' : 'is-closed'}`}>
+    <div ref={stageRef} data-theme="dark" className={`dz-stage ${open > 0 ? 'is-open' : 'is-closed'}`}>
       <header className="dz-top">
         <button type="button" className="dz-brand" onClick={onBack} aria-label="Zakaria Dabella — back to start">
           <Image src="/zakaria-mark.png" alt="" width={400} height={603} />
@@ -525,17 +609,44 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
 
       <div className="dz-hud" aria-live="polite">
         {open === 0 ? (
-          <span>Click the book to open</span>
+          <button type="button" className="dz-start" onClick={() => go(1)}>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+              <rect x="7" y="2.5" width="10" height="17" rx="5" />
+              <path d="M12 7v3" className="dz-wheel" />
+              <path d="M9 22l3 0" opacity="0" />
+            </svg>
+            Scroll or click to open
+          </button>
         ) : (
           <>
-            <button type="button" onClick={() => go(open - 1)} aria-label="Previous spread">
-              ←
+            <button type="button" className="dz-nav" onClick={() => go(open - 1)} aria-label="Previous spread">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M15 5l-7 7 7 7" />
+              </svg>
             </button>
-            <span>
-              {pad(open)} / {pad(maxOpen)}
-            </span>
-            <button type="button" onClick={() => (lastSpread ? go(0) : go(open + 1))} aria-label={lastSpread ? 'Close the book' : 'Forward one spread'}>
-              {lastSpread ? '✕' : '→'}
+            <div className="dz-progress" role="progressbar" aria-valuemin={1} aria-valuemax={maxOpen} aria-valuenow={open}>
+              <span className="dz-count">
+                {pad(open)} <i>/ {pad(maxOpen)}</i>
+              </span>
+              <span className="dz-bar">
+                <span style={{ transform: `scaleX(${open / maxOpen})` }} />
+              </span>
+            </div>
+            <button
+              type="button"
+              className="dz-nav"
+              onClick={() => (lastSpread ? go(0) : go(open + 1))}
+              aria-label={lastSpread ? 'Close the book' : 'Forward one spread'}
+            >
+              {lastSpread ? (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              )}
             </button>
           </>
         )}

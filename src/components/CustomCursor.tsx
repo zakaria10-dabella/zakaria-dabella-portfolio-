@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type CursorVariant = 'default' | 'link' | 'view' | 'drag' | 'hire' | 'ask' | 'text';
+type CursorVariant = 'default' | 'link' | 'view' | 'drag' | 'hire' | 'ask' | 'text' | 'open' | 'flip';
 
 interface CursorConfig {
   dotSize:     number;
@@ -21,6 +21,8 @@ const CONFIGS: Record<CursorVariant, CursorConfig> = {
   hire:    { dotSize: 0,  ringSize: 78, ringFilled: true,  label: 'HIRE',   borderWidth: 0   },
   ask:     { dotSize: 0,  ringSize: 72, ringFilled: true,  label: 'ASK AI', borderWidth: 0   },
   text:    { dotSize: 2,  ringSize: 20, ringFilled: false, label: '',       borderWidth: 1   },
+  open:    { dotSize: 0,  ringSize: 78, ringFilled: true,  label: 'OPEN',   borderWidth: 0   },
+  flip:    { dotSize: 0,  ringSize: 70, ringFilled: true,  label: 'FLIP',   borderWidth: 0   },
 };
 
 const SPRING_FAST = { type: 'spring' as const, stiffness: 800, damping: 38, mass: 0.3 };
@@ -81,11 +83,19 @@ export function CustomCursor() {
     if (window.innerWidth < 768) return;
 
     setMounted(true);
+    document.documentElement.classList.add('has-custom-cursor');
     rafRef.current = requestAnimationFrame(tick);
+    let shown = false;
 
     // ── Hot path: position only, zero React state updates ─────────────────
     const onMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
+      if (!shown) {
+        // first move after mount / re-entry: snap the ring to the pointer and reveal
+        shown = true;
+        ringPos.current = { x: e.clientX, y: e.clientY };
+        show();
+      }
       if (dotWrapRef.current) {
         dotWrapRef.current.style.transform =
           `translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;
@@ -123,21 +133,23 @@ export function CustomCursor() {
     const onUp   = () => { clickingRef.current = false; setClicking(false); };
 
     // ── Visibility: direct DOM — no React re-render on enter/leave ────────
-    const show = () => {
+    function show() {
+      shown = true;
       if (dotWrapRef.current)  dotWrapRef.current.style.opacity  = '1';
       if (ringWrapRef.current) ringWrapRef.current.style.opacity = '1';
-    };
-    const hide = () => {
+    }
+    function hide() {
+      shown = false;
       if (dotWrapRef.current)  dotWrapRef.current.style.opacity  = '0';
       if (ringWrapRef.current) ringWrapRef.current.style.opacity = '0';
-    };
+    }
 
     document.addEventListener('mousemove',  onMove,  { passive: true });
     document.addEventListener('mouseover',  onOver,  { passive: true });
     document.addEventListener('mousedown',  onDown);
     document.addEventListener('mouseup',    onUp);
-    document.addEventListener('mouseleave', hide);
-    document.addEventListener('mouseenter', show);
+    document.documentElement.addEventListener('mouseleave', hide);
+    document.documentElement.addEventListener('mouseenter', show);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
@@ -145,8 +157,9 @@ export function CustomCursor() {
       document.removeEventListener('mouseover',  onOver);
       document.removeEventListener('mousedown',  onDown);
       document.removeEventListener('mouseup',    onUp);
-      document.removeEventListener('mouseleave', hide);
-      document.removeEventListener('mouseenter', show);
+      document.documentElement.removeEventListener('mouseleave', hide);
+      document.documentElement.removeEventListener('mouseenter', show);
+      document.documentElement.classList.remove('has-custom-cursor');
     };
   }, [tick]);
 
@@ -165,7 +178,7 @@ export function CustomCursor() {
         ref={dotWrapRef}
         aria-hidden
         style={{
-          position: 'fixed', top: 0, left: 0, zIndex: 9999,
+          position: 'fixed', top: 0, left: 0, zIndex: 10051,
           pointerEvents: 'none', willChange: 'transform',
           opacity: 0,
         }}
@@ -187,7 +200,7 @@ export function CustomCursor() {
         ref={ringWrapRef}
         aria-hidden
         style={{
-          position: 'fixed', top: 0, left: 0, zIndex: 9998,
+          position: 'fixed', top: 0, left: 0, zIndex: 10050,
           pointerEvents: 'none', willChange: 'transform',
           opacity: 0,
         }}
