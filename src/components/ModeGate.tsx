@@ -99,6 +99,7 @@ export function ModeGate({ onPick }: { onPick: (m: Mode) => void }) {
 
   return (
     <motion.div
+      data-theme="dark"
       className="fixed inset-0 z-[10000] flex flex-col items-center justify-center text-center"
       style={{ background: '#050505', color: '#fff', padding: '0 6vw' }}
       initial={{ opacity: 1 }}
@@ -148,7 +149,7 @@ export function ModeGate({ onPick }: { onPick: (m: Mode) => void }) {
           like to meet?
         </h1>
 
-        <div onMouseLeave={() => setHint(null)} onMouseOver={(e) => {
+        <div data-cursor="open" onMouseLeave={() => setHint(null)} onMouseOver={(e) => {
           const t = (e.target as HTMLElement).closest('button[role="radio"]');
           if (t) setHint(t.textContent === 'Developer' ? 'developer' : 'designer');
         }}>

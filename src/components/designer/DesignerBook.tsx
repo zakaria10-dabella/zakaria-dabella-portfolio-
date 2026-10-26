@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { WORKS, type Work } from './works';
-import { Backdrop } from './Backdrop';
 import './designer.css';
 
 /**
@@ -553,7 +552,12 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
   const lastSpread = open === maxOpen;
 
   return (
-    <div ref={stageRef} data-theme="dark" className={`dz-stage ${open > 0 ? 'is-open' : 'is-closed'}`}>
+    <div
+      ref={stageRef}
+      data-theme="dark"
+      className={`dz-stage ${open > 0 ? 'is-open' : 'is-closed'}`}
+      style={{ '--glow': `${Math.min(255, parseInt(tint.slice(1, 3), 16) * 2 + 50)},${Math.min(255, parseInt(tint.slice(3, 5), 16) * 2 + 50)},${Math.min(255, parseInt(tint.slice(5, 7), 16) * 2 + 50)}` } as React.CSSProperties}
+    >
       <header className="dz-top">
         <button type="button" className="dz-brand" onClick={onBack} aria-label="Zakaria Dabella — back to start">
           <Image src="/zakaria-mark.png" alt="" width={400} height={603} />
@@ -573,7 +577,6 @@ export function DesignerBook({ onBack }: { onBack?: () => void }) {
         <p>Click on pages to view works, hover to see how they act in motion</p>
       </div>
 
-      <Backdrop tint={tint} kick={open} />
       <div className="dz-beam" aria-hidden />
       <div className="dz-scene">
         <div className="dz-desk">
